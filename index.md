@@ -1,37 +1,31 @@
-## Welcome to GitHub Pages
+## TastyFoodHere Platform
 
-You can use the [editor on GitHub](https://github.com/ianic1999/tasty-food-here-platform/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+TastyFoodHere is a platform that would help restaurants waiters and clients ease the process of interaction between themselves with an automated process of booking, serving, calling, and notifying. The idea is that clients will use a web application in order to see the menu, see reviews or book a table if available giving the order. After the booking, they are called by the waiter to confirm the booking. The waiters will use an Android application to see all tables that they serve, orders for each table as well as live notifications if they are called by a certain table. The platform will have more functionalities besides the mentioned ones that are mentioned in Functional/Non-Functional Requirements. The platform will be divided in 4 main components: Backend(Spring), Frontend(Angular), Mobile(Android) abd IoT(Arduino). Platform repository can be found at the following <a href="https://github.com/ianic1999/tasty-food-here-platform">link</a>.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Why TFH?
 
-### Markdown
+This platform is aimed to solve the following problems:
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+- (Client) It will be possible to call the waiter being at the restaurant by just clicking a button, and he will get notified shortly
+- (Client) It will be possible to book a table in the restaurant at a certain time and give some orders before coming to the restaurant or on the spot
+- (Client) It will be possible to see reviews for both restaurant and waiters
+- (Waiter) It will be possible to receive live notifications if a table is calling
+- (Waiter) It will be possible to take a table and see all tables you serve
+- (Waiter) It will be possible to call the client to confirm his booking
 
-```markdown
-Syntax highlighted code block
+## Wiki
 
-# Header 1
-## Header 2
-### Header 3
+Project Documentation can be found at the following <a href="https://github.com/ianic1999/tasty-food-here-platform/wiki">page</a>.
+It includes:
+1. <a href="https://github.com/ianic1999/tasty-food-here-platform/wiki/Functional-Requirements">Functional Requirements</a>
+2. <a href="https://github.com/ianic1999/tasty-food-here-platform/wiki/Non-Functional-Requirements">Functional Requirements</a>
+3. <a href="https://github.com/ianic1999/tasty-food-here-platform/wiki/Viewpoints">Viewpoints</a>
 
-- Bulleted
-- List
 
-1. Numbered
-2. List
+## Backlog and Progress
 
-**Bold** and _Italic_ and `Code` text
+Project backlog can be found <a href="https://github.com/ianic1999/tasty-food-here-platform/projects/2">here</a>. It clearly defines the current progress of the project and the estimations for each task. Each ticket has assigned to it some labels showing storypoints, component and sprint. At the moment the project is in documentation stage.
 
-[Link](url) and ![Image](src)
-```
+## Future plans
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/ianic1999/tasty-food-here-platform/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+In next sprints, the building of application will start. Firstly, the backend will be build. When the API is ready, Web And Mobile applications will be built and connected with the backend using REST Api. Finally we will have a ready product that will ease the process of interaction between waiters and clients.
