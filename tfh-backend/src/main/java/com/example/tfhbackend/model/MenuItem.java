@@ -1,6 +1,7 @@
 package com.example.tfhbackend.model;
 
 import com.example.tfhbackend.model.enums.FoodCategory;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
@@ -11,6 +12,7 @@ import javax.validation.constraints.Positive;
 import java.util.List;
 
 @Entity
+@AllArgsConstructor
 @NoArgsConstructor
 @Builder
 public class MenuItem {
@@ -28,6 +30,7 @@ public class MenuItem {
 
     private String image;
 
+    @Enumerated(EnumType.STRING)
     private FoodCategory category;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "items", cascade = CascadeType.ALL)

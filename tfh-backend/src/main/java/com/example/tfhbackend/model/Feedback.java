@@ -1,5 +1,6 @@
 package com.example.tfhbackend.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
@@ -7,6 +8,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 @Entity
+@AllArgsConstructor
 @NoArgsConstructor
 @Builder
 public class Feedback {
@@ -16,7 +18,7 @@ public class Feedback {
     @GenericGenerator(name = "incrementDomain", strategy = "increment")
     private Long id;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT", name = "feedback_text")
     private String text;
 
     private Integer rating;
