@@ -1,0 +1,194 @@
+databaseChangeLog:
+  - changeSet:
+      id: craete_users_table
+      author: ianic
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: first_name
+                  type: varchar(256)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: last_name
+                  type: varchar(256)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: varchar(256)
+                  constraints:
+                    unique: true
+              - column:
+                  name: phone
+                  type: varchar(256)
+                  constraints:
+                    unique: true
+              - column:
+                  name: password
+                  type: varchar(1024)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: confirmed
+                  type: boolean
+              - column:
+                  name: role
+                  type: varchar(256)
+
+  - changeSet:
+      id: create_feedback_table
+      author: ianic
+      changes:
+        - createTable:
+            tableName: feedback
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: feedback_text
+                  type: text
+              - column:
+                  name: rating
+                  type: INT
+
+  - changeSet:
+      id: create_tables_table
+      author: ianic
+      changes:
+        - createTable:
+            tableName: tables
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: ordinal_number
+                  type: INT
+              - column:
+                  name: nr_of_spots
+                  type: INT
+              - column:
+                  name: waiter_id
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_table_waiter
+                    references: users(id)
+
+  - changeSet:
+      id: create_menu_table
+      author: ianic
+      changes:
+        - createTable:
+            tableName: menu_item
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(256)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: price
+                  type: double
+              - column:
+                  name: image
+                  type: varchar(1024)
+              - column:
+                  name: category
+                  type: varchar(128)
+
+  - changeSet:
+      id: create_booking_table
+      author: ianic
+      changes:
+        - createTable:
+            tableName: bookings
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: time
+                  type: timestamp
+              - column:
+                  name: duration
+                  type: INT
+              - column:
+                  name: table_id
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_booking_table
+                    references: tables(id)
+
+  - changeSet:
+      id: create_orders_table
+      author: ianic
+      changes:
+        - createTable:
+            tableName: orders
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: booking_id
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_order_booking
+                    references: bookings(id)
+
+  - changeSet:
+      id: create_order_item_table
+      author: ianic
+      changes:
+        - createTable:
+            tableName: order_item
+            columns:
+              - column:
+                  name: order_id
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_item_order
+                    references: orders(id)
+              - column:
+                  name: menu_item_id
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_order_item
+                    references: menu_item(id)
+
+
+
