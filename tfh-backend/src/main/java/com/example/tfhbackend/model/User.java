@@ -1,6 +1,7 @@
 package com.example.tfhbackend.model;
 
 import com.example.tfhbackend.model.enums.UserRole;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
@@ -18,6 +19,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Entity
+@AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @javax.persistence.Table(name = "users")
@@ -46,6 +48,7 @@ public class User implements UserDetails {
 
     private Boolean confirmed;
 
+    @Enumerated(EnumType.STRING)
     private UserRole role;
 
     @Builder.Default

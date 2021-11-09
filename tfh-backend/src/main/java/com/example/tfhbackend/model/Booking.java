@@ -1,5 +1,6 @@
 package com.example.tfhbackend.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
@@ -10,8 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@javax.persistence.Table(name = "bookings")
 public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "incrementDomain")
