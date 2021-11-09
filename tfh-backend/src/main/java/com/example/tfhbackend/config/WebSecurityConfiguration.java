@@ -1,5 +1,6 @@
 package com.example.tfhbackend.config;
 
+import com.example.tfhbackend.model.enums.UserRole;
 import com.example.tfhbackend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +56,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/api/auth/register").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
+                .antMatchers("/api/users/activate/**").hasAuthority(UserRole.ADMIN.name())
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement()

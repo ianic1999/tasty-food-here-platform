@@ -15,6 +15,7 @@ public class UserDtoMapper implements Mapper<User, UserDTO> {
                 .phone(entity.getPhone())
                 .email(entity.getEmail())
                 .role(entity.getRole().name())
+                .confirmed(entity.getConfirmed())
                 .build();
     }
 }

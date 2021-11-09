@@ -1,5 +1,6 @@
 package com.example.tfhbackend.service.impl;
 
+import com.example.tfhbackend.dto.MessageDTO;
 import com.example.tfhbackend.dto.UserDTO;
 import com.example.tfhbackend.dto.request.UserRequest;
 import com.example.tfhbackend.mapper.Mapper;
@@ -102,6 +103,14 @@ class UserServiceImpl implements UserService {
                         .orElseThrow(() -> new UserException("Error loading current logged user"))
         );
 
+    }
+
+    @Override
+    @Transactional
+    public MessageDTO activateUser(Long id) throws UserException {
+        User user = findUserById(id);
+        user.setConfirmed(true);
+        return new MessageDTO("User successfully activated");
     }
 
     private User findUserById(Long id) throws UserException {
