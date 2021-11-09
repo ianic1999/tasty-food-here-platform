@@ -39,7 +39,7 @@ public class User implements UserDetails {
     @Column(unique = true)
     private String email;
 
-    @Pattern(regexp = "\\+373[0-9]{6}")
+    @Pattern(regexp = "\\+373[0-9]{8}")
     @Column(unique = true)
     private String phone;
 
