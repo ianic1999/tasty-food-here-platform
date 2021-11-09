@@ -31,4 +31,17 @@ public class Booking {
     @Builder.Default
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "booking", cascade = CascadeType.ALL)
     private List<Order> orders = new ArrayList<>();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Booking booking = (Booking) o;
+        return id.equals(booking.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Long.hashCode(id);
+    }
 }

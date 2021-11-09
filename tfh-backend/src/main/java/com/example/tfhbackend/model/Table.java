@@ -51,4 +51,17 @@ public class Table {
     public void setNrOfSpots(Integer nrOfSpots) {
         this.nrOfSpots = nrOfSpots;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Table table = (Table) o;
+        return id.equals(table.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Long.hashCode(id);
+    }
 }

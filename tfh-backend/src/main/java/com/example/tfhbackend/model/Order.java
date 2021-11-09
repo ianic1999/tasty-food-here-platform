@@ -32,4 +32,17 @@ public class Order {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Booking booking;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return id.equals(order.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Long.hashCode(id);
+    }
 }
