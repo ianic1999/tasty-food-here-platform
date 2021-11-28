@@ -13,13 +13,12 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class OrderDtoMapper implements Mapper<Order, OrderDTO> {
     private final Mapper<MenuItem, MenuItemDTO> menuItemMapper;
-    private final Mapper<Booking, BookingDTO> bookingMapper;
 
     @Override
     public OrderDTO map(Order entity) {
         return OrderDTO.builder()
                 .id(entity.getId())
-                .booking(bookingMapper.map(entity.getBooking()))
+                .bookingId(entity.getBooking().getId())
                 .items(menuItemMapper.mapList(entity.getItems()))
                 .build();
     }

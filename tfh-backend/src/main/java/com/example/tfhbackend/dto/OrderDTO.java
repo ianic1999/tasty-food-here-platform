@@ -13,7 +13,7 @@ import java.util.List;
 @Data
 public class OrderDTO {
     private Long id;
+    private Long bookingId;
     private List<MenuItemDTO> items;
-    private BookingDTO booking;
 
 }
