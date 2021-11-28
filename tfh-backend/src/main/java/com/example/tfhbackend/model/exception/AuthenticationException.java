@@ -1,6 +1,6 @@
 package com.example.tfhbackend.model.exception;
 
-public class AuthenticationException extends Exception {
+public class AuthenticationException extends RuntimeException {
     public AuthenticationException() {
         super();
     }

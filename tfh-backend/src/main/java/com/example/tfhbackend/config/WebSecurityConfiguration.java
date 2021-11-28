@@ -17,6 +17,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.header.writers.ReferrerPolicyHeaderWriter;
 
@@ -56,6 +57,16 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/api/auth/register").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/menu_items").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/menu_items").permitAll()
+                .antMatchers(HttpMethod.PATCH, "/api/menu_items/**").permitAll()
+                .antMatchers(HttpMethod.DELETE, "/api/menu_items/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/tables").hasAuthority(UserRole.ADMIN.name())
+                .antMatchers(HttpMethod.PUT, "/api/tables/**").hasAuthority(UserRole.ADMIN.name())
+                .antMatchers(HttpMethod.DELETE, "/api/tables/**").hasAuthority(UserRole.ADMIN.name())
+                .antMatchers(HttpMethod.GET, "/api/feedbacks/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/feedbacks").permitAll()
+                .antMatchers(HttpMethod.DELETE, "/api/feedbacks/**").hasAuthority(UserRole.ADMIN.name())
                 .antMatchers("/api/users/activate/**").hasAuthority(UserRole.ADMIN.name())
                 .anyRequest().authenticated()
                 .and()
@@ -83,5 +94,13 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder());
+    }
+
+    @Override
+    public void configure(WebSecurity web) {
+        web.ignoring().antMatchers(
+                "/instances",
+                "/actuator/**"
+        );
     }
 }
