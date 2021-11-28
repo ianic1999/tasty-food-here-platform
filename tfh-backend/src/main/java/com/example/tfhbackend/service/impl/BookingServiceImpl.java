@@ -45,10 +45,11 @@ public class BookingServiceImpl implements BookingService {
         Booking booking = Booking.builder()
                 .time(request.getTime())
                 .duration(request.getDuration())
-                .table(table)
                 .orders(new ArrayList<>())
                 .build();
-        return mapper.map(bookingRepository.save(booking));
+        booking = bookingRepository.save(booking);
+        table.addBooking(booking);
+        return mapper.map(booking);
     }
 
     @Override
@@ -56,7 +57,11 @@ public class BookingServiceImpl implements BookingService {
     public BookingDTO update(BookingRequest request) {
         Booking booking = findBookingById(request.getId());
         Table table = findTableById(request.getTableId());
-        booking.setTable(table);
+        if (!table.equals(booking.getTable())) {
+            Table actualTable = booking.getTable();
+            actualTable.removeBooking(booking);
+            table.addBooking(booking);
+        }
         booking.setTime(request.getTime());
         booking.setDuration(request.getDuration());
         return mapper.map(booking);
@@ -65,6 +70,9 @@ public class BookingServiceImpl implements BookingService {
     @Override
     @Transactional
     public void remove(Long id) {
+        Booking booking = findBookingById(id);
+        Table table = booking.getTable();
+        table.removeBooking(booking);
         bookingRepository.deleteById(id);
     }
 

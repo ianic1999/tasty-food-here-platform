@@ -52,6 +52,16 @@ public class Table {
         this.nrOfSpots = nrOfSpots;
     }
 
+    public void addBooking(Booking booking) {
+        bookings.add(booking);
+        booking.setTable(this);
+    }
+
+    public void removeBooking(Booking booking) {
+        bookings.remove(booking);
+        booking.setTable(null);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
