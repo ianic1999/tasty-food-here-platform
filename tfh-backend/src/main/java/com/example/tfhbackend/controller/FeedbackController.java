@@ -21,7 +21,7 @@ public class FeedbackController {
 
     @GetMapping
     public ResponseEntity<PaginatedResponse<FeedbackDTO>> get(@RequestParam(defaultValue = "1") int page,
-                                                              @RequestParam(defaultValue = "15") int perPage) {
+                                                              @RequestParam(defaultValue = "10") int perPage) {
         log.info("/api/feedbacks: GET request with parameters: page: {}, perPage: {} ", page, perPage);
         var response = feedbackService.get(page, perPage);
         log.info("/api/feedbacks: Response status: {}", HttpStatus.OK);

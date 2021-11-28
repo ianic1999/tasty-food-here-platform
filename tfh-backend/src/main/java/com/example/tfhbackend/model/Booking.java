@@ -8,6 +8,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -43,5 +44,37 @@ public class Booking {
     @Override
     public int hashCode() {
         return Long.hashCode(id);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public LocalDateTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalDateTime time) {
+        this.time = time;
+    }
+
+    public Integer getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Integer duration) {
+        this.duration = duration;
+    }
+
+    public Table getTable() {
+        return table;
+    }
+
+    public void setTable(Table table) {
+        this.table = table;
+    }
+
+    public List<Order> getOrders() {
+        return Collections.unmodifiableList(orders);
     }
 }

@@ -21,7 +21,7 @@ public class MenuItemController {
 
     @GetMapping
     public ResponseEntity<PaginatedResponse<MenuItemDTO>> get(@RequestParam(defaultValue = "1") int page,
-                                                              @RequestParam(defaultValue = "15") int perPage) {
+                                                              @RequestParam(defaultValue = "10") int perPage) {
         log.info("/api/menu_items: GET request with parameters: page: {}, perPage: {}", page, perPage);
         var response = menuItemService.get(page, perPage);
         log.info("/api/menu_items: Response status: {}", HttpStatus.OK);

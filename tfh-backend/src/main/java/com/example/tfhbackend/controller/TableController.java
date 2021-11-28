@@ -21,7 +21,7 @@ public class TableController {
 
     @GetMapping
     public ResponseEntity<PaginatedResponse<TableDTO>> get(@RequestParam(defaultValue = "1") int page,
-                                                           @RequestParam(defaultValue = "15") int perPage) {
+                                                           @RequestParam(defaultValue = "10") int perPage) {
         log.info("/api/tables: GET request with parameters: page: {}, perPage: {}", page, perPage);
         var response = tableService.get(page, perPage);
         log.info("/api/tables: Response status: {}", HttpStatus.OK);
