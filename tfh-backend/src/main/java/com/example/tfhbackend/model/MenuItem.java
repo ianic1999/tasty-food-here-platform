@@ -72,6 +72,14 @@ public class MenuItem {
         this.category = category;
     }
 
+    public void addOrder(Order order) {
+        orders.add(order);
+    }
+
+    public void removeOrder(Order order) {
+        orders.remove(order);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -8,6 +8,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import javax.persistence.Table;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -44,5 +45,36 @@ public class Order {
     @Override
     public int hashCode() {
         return Long.hashCode(id);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public List<MenuItem> getItems() {
+        return Collections.unmodifiableList(items);
+    }
+
+    public Booking getBooking() {
+        return booking;
+    }
+
+    public void setBooking(Booking booking) {
+        this.booking = booking;
+    }
+
+    public void addMenuItem(MenuItem menuItem) {
+        items.add(menuItem);
+        menuItem.addOrder(this);
+    }
+
+    public void removeBooking() {
+        booking.getOrders().remove(this);
+        setBooking(null);
+    }
+
+    public void removeMenuItem(MenuItem menuItem) {
+        items.remove(menuItem);
+        menuItem.removeOrder(this);
     }
 }

@@ -1,4 +1,4 @@
-package com.example.tfhbackend.dto;
+package com.example.tfhbackend.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,9 +11,8 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Data
-public class OrderDTO {
+public class OrderRequest {
     private Long id;
-    private List<MenuItemDTO> items;
-    private BookingDTO booking;
-
+    private Long bookingId;
+    private List<Long> menuItemIds;
 }

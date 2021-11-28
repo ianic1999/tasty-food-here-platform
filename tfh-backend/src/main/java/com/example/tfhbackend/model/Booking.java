@@ -77,4 +77,14 @@ public class Booking {
     public List<Order> getOrders() {
         return Collections.unmodifiableList(orders);
     }
+
+    public void addOrder(Order order) {
+        orders.add(order);
+        order.setBooking(this);
+    }
+
+    public void removeOrder(Order order) {
+        orders.remove(order);
+        order.setBooking(null);
+    }
 }
