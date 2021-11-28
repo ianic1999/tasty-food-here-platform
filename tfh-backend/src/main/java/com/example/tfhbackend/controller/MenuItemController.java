@@ -72,7 +72,7 @@ public class MenuItemController {
     public ResponseEntity<?> remove(@PathVariable Long id) {
         log.info("/api/menu_items/{id}: DELETE request for removing item with id: {}", id);
         menuItemService.remove(id);
-        log.info("/api/menu_items/{id}: Item with id {} remove, Response status={}", id, HttpStatus.NO_CONTENT);
+        log.info("/api/menu_items/{id}: Item with id {} removed, Response status={}", id, HttpStatus.NO_CONTENT);
         return ResponseEntity.noContent().build();
     }
 }

@@ -5,7 +5,7 @@ import com.example.tfhbackend.model.MenuItem;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MenuItemDtoMapper implements Mapper<MenuItem, MenuItemDTO> {
+class MenuItemDtoMapper implements Mapper<MenuItem, MenuItemDTO> {
 
     @Override
     public MenuItemDTO map(MenuItem entity) {

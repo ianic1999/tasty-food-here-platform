@@ -7,7 +7,6 @@ import com.example.tfhbackend.dto.request.AuthenticationRequest;
 import com.example.tfhbackend.dto.request.UserRequest;
 import com.example.tfhbackend.model.User;
 import com.example.tfhbackend.model.exception.AuthenticationException;
-import com.example.tfhbackend.model.exception.UserException;
 import com.example.tfhbackend.service.AuthenticationService;
 import com.example.tfhbackend.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +21,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor(onConstructor_ = {@Autowired})
+@RequiredArgsConstructor
 public class AuthenticationServiceImpl implements AuthenticationService {
     private final UserService userService;
     private final BCryptPasswordEncoder passwordEncoder;
@@ -30,14 +29,14 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final JwtTokenUtil jwtTokenUtil;
 
     @Override
-    public MessageDTO register(UserRequest request) throws UserException {
+    public MessageDTO register(UserRequest request) {
         request.setPassword(passwordEncoder.encode(request.getPassword()));
         userService.add(request);
         return new MessageDTO("User successfully registered. You will be notified via email once the user is activated.");
     }
 
     @Override
-    public JwtDTO authenticate(AuthenticationRequest request) throws AuthenticationException {
+    public JwtDTO authenticate(AuthenticationRequest request) {
         String phone = request.getPhone();
         UserDetails userDetails = getUserDetails(phone);
         User user = (User) userDetails;
@@ -48,7 +47,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         throw new AuthenticationException("Authentication error");
     }
 
-    private UserDetails getUserDetails(String phone) throws AuthenticationException {
+    private UserDetails getUserDetails(String phone) {
         try {
             return userService.loadUserByUsername(phone);
         } catch (UsernameNotFoundException e) {
