@@ -51,4 +51,27 @@ public class Table {
     public void setNrOfSpots(Integer nrOfSpots) {
         this.nrOfSpots = nrOfSpots;
     }
+
+    public void addBooking(Booking booking) {
+        bookings.add(booking);
+        booking.setTable(this);
+    }
+
+    public void removeBooking(Booking booking) {
+        bookings.remove(booking);
+        booking.setTable(null);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Table table = (Table) o;
+        return id.equals(table.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Long.hashCode(id);
+    }
 }
