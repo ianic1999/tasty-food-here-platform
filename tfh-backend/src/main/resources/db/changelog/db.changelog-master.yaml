@@ -190,5 +190,26 @@ databaseChangeLog:
                     foreignKeyName: fk_order_item
                     references: menu_item(id)
 
+  - changeSet:
+      id: create_activity_table
+      author: ianic
+      changes:
+        - createTable:
+            tableName: activity
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: activity_type
+                  type: varchar(64)
+              - column:
+                  name: created_at
+                  type: timestamp
+
 
 
