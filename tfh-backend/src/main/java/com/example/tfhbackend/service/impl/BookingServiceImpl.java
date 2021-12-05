@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 @Service
 @RequiredArgsConstructor
@@ -45,7 +46,7 @@ class BookingServiceImpl implements BookingService {
         Booking booking = Booking.builder()
                 .time(request.getTime())
                 .duration(request.getDuration())
-                .orders(new ArrayList<>())
+                .orders(Collections.emptyList())
                 .build();
         booking = bookingRepository.save(booking);
         table.addBooking(booking);

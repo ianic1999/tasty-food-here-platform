@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 @Service
 @RequiredArgsConstructor
@@ -39,7 +40,7 @@ class TableServiceImpl implements TableService {
     public TableDTO add(TableDTO dto) {
         Table table = Table.builder()
                 .nrOfSpots(dto.getNrOfSpots())
-                .bookings(new ArrayList<>())
+                .bookings(Collections.emptyList())
                 .build();
         table = tableRepository.save(table);
         table.setOrdinalNumber(table.getId().intValue());

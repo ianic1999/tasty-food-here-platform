@@ -24,6 +24,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -68,7 +69,7 @@ class UserServiceImpl implements UserService {
                 .confirmed(false)
                 .role(UserRole.valueOf(request.getRole()))
                 .password(request.getPassword())
-                .tables(new ArrayList<>())
+                .tables(Collections.emptyList())
                 .build();
 
         return mapper.map(userRepository.save(user));

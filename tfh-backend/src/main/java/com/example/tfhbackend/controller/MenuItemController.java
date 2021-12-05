@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+
 @RestController
 @RequestMapping("/api/menu_items")
 @CrossOrigin("*")
@@ -44,7 +46,7 @@ public class MenuItemController {
     public ResponseEntity<Response<MenuItemDTO>> add(@RequestParam String name,
                                                      @RequestParam Double price,
                                                      @RequestParam String category,
-                                                     @RequestParam MultipartFile image) {
+                                                     @RequestParam MultipartFile image) throws IOException {
         log.info("/api/menu_items: POST request for adding item with name: {}", name);
         var response = menuItemService.add(name, price, category, image);
         log.info("/api/menu_items: Menu items added, id={}, Response status: {}", response.getId(), HttpStatus.CREATED);
@@ -59,7 +61,7 @@ public class MenuItemController {
                                                         @RequestParam(required = false) String name,
                                                         @RequestParam(required = false) Double price,
                                                         @RequestParam(required = false) String category,
-                                                        @RequestParam(required = false) MultipartFile image) {
+                                                        @RequestParam(required = false) MultipartFile image) throws IOException {
         log.info("/api/menu_items/{id}: PATCH request for updating item with id: {}", id);
         var response = menuItemService.update(id, name, price, category, image);
         log.info("/api/menu_items/{id}: Menu items updated, Response status: {}", HttpStatus.OK);
@@ -69,7 +71,7 @@ public class MenuItemController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> remove(@PathVariable Long id) {
+    public ResponseEntity<Void> remove(@PathVariable Long id) throws IOException {
         log.info("/api/menu_items/{id}: DELETE request for removing item with id: {}", id);
         menuItemService.remove(id);
         log.info("/api/menu_items/{id}: Item with id {} removed, Response status={}", id, HttpStatus.NO_CONTENT);
