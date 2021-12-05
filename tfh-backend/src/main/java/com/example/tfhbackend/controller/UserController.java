@@ -76,7 +76,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> remove(@PathVariable Long id) {
+    public ResponseEntity<Void> remove(@PathVariable Long id) {
         log.info("/api/users/{id}: DELETE request for user with id {}", id);
         userService.remove(id);
         log.info("/api/users/{id}: User with id {} deleted, status: {}", id, HttpStatus.NO_CONTENT);

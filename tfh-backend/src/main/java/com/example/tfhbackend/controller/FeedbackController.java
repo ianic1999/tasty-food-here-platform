@@ -52,7 +52,7 @@ public class FeedbackController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> remove(@PathVariable Long id) {
+    public ResponseEntity<Void> remove(@PathVariable Long id) {
         log.info("/api/feedbacks/{id}: DELETE request for removing feedback with id: {}", id);
         feedbackService.remove(id);
         log.info("/api/feedbacks/{id}: Item with id {} removed, Response status={}", id, HttpStatus.NO_CONTENT);

@@ -20,7 +20,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class MenuItemServiceImpl implements MenuItemService {
+class MenuItemServiceImpl implements MenuItemService {
 
     private final MenuItemRepository menuItemRepository;
     private final Mapper<MenuItem, MenuItemDTO> mapper;

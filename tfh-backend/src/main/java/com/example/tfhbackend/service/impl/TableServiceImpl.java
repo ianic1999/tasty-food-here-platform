@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 @Service
 @RequiredArgsConstructor
-public class TableServiceImpl implements TableService {
+class TableServiceImpl implements TableService {
     private final TableRepository tableRepository;
     private final Mapper<Table, TableDTO> mapper;
 

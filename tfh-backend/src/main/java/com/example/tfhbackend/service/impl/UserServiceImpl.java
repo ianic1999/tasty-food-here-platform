@@ -10,6 +10,7 @@ import com.example.tfhbackend.model.exception.CustomRuntimeException;
 import com.example.tfhbackend.model.exception.EntityNotFoundException;
 import com.example.tfhbackend.repository.UserRepository;
 import com.example.tfhbackend.service.UserService;
+import com.example.tfhbackend.validator.UserValidator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Slf4j
@@ -31,12 +33,13 @@ class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final Mapper<User, UserDTO> mapper;
+    private final List<UserValidator> validators;
 
     @Override
     @Transactional(readOnly = true)
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        return userRepository.findByPhone(s)
-                .orElseThrow(() -> new UsernameNotFoundException("User with phone " + s + " not found"));
+    public UserDetails loadUserByUsername(String phone) {
+        return userRepository.findByPhone(phone)
+                .orElseThrow(() -> new CustomRuntimeException("User with phone " + phone + " not found"));
     }
 
     @Override
@@ -55,10 +58,7 @@ class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public UserDTO add(UserRequest request) {
-        if (phoneAlreadyExist(request.getPhone()))
-            throw new CustomRuntimeException("User with phone " + request.getPhone() + " already exist");
-        if (emailAlreadyExist(request.getEmail()))
-            throw new CustomRuntimeException("User with email " + request.getEmail() + " already exist");
+        validators.forEach(validator -> validator.validate(request));
 
         User user = User.builder()
                 .firstName(request.getFirstName())
@@ -78,15 +78,9 @@ class UserServiceImpl implements UserService {
     @Transactional
     public UserDTO update(UserRequest request) {
         User user = findUserById(request.getId());
-        if (!user.getPhone().equals(request.getPhone()) && phoneAlreadyExist(request.getPhone()))
-            throw new CustomRuntimeException("User with phone " + request.getPhone() + " already exist");
-        if (!user.getEmail().equals(request.getEmail()) && emailAlreadyExist(request.getEmail()))
-            throw new CustomRuntimeException("User with email " + request.getEmail() + " already exist");
 
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
-        user.setEmail(request.getEmail());
-        user.setPhone(request.getPhone());
 
         return mapper.map(user);
     }
@@ -98,6 +92,7 @@ class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public UserDTO getCurrentLoggedUser() {
         UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return mapper.map(
@@ -118,13 +113,5 @@ class UserServiceImpl implements UserService {
     private User findUserById(Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("User with id " + id + " not found"));
-    }
-
-    private boolean phoneAlreadyExist(String phone) {
-        return userRepository.findByPhone(phone).isPresent();
-    }
-
-    private boolean emailAlreadyExist(String email) {
-        return userRepository.findByEmail(email).isPresent();
     }
 }

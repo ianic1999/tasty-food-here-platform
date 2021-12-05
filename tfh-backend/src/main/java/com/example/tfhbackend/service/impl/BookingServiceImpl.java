@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 @Service
 @RequiredArgsConstructor
-public class BookingServiceImpl implements BookingService {
+class BookingServiceImpl implements BookingService {
     private final BookingRepository bookingRepository;
     private final TableRepository tableRepository;
     private final Mapper<Booking, BookingDTO> mapper;

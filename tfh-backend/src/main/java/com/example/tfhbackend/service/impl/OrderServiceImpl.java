@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class OrderServiceImpl implements OrderService {
+class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final BookingRepository bookingRepository;
     private final MenuItemRepository menuItemRepository;

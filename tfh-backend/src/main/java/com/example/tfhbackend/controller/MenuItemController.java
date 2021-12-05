@@ -69,7 +69,7 @@ public class MenuItemController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> remove(@PathVariable Long id) {
+    public ResponseEntity<Void> remove(@PathVariable Long id) {
         log.info("/api/menu_items/{id}: DELETE request for removing item with id: {}", id);
         menuItemService.remove(id);
         log.info("/api/menu_items/{id}: Item with id {} removed, Response status={}", id, HttpStatus.NO_CONTENT);

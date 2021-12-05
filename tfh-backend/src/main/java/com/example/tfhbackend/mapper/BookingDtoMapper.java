@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class BookingDtoMapper implements Mapper<Booking, BookingDTO> {
+class BookingDtoMapper implements Mapper<Booking, BookingDTO> {
     private final Mapper<Table, TableDTO> tableMapper;
     private final Mapper<Order, OrderDTO> orderMapper;
 

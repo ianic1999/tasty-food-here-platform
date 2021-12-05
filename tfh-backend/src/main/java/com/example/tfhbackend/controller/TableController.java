@@ -64,7 +64,7 @@ public class TableController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> remove(@PathVariable Long id) {
+    public ResponseEntity<Void> remove(@PathVariable Long id) {
         log.info("/api/tables/{id}: DELETE request for removing table with id: {}", id);
         tableService.remove(id);
         log.info("/api/tables/{id}: Table with id {} removed, Response status={}", id, HttpStatus.NO_CONTENT);

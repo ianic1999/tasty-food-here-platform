@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class OrderDtoMapper implements Mapper<Order, OrderDTO> {
+class OrderDtoMapper implements Mapper<Order, OrderDTO> {
     private final Mapper<MenuItem, MenuItemDTO> menuItemMapper;
 
     @Override

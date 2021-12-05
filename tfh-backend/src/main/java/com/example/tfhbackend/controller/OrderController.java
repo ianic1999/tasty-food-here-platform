@@ -52,7 +52,7 @@ public class OrderController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> remove(@PathVariable Long id) {
+    public ResponseEntity<Void> remove(@PathVariable Long id) {
         log.info("/api/orders/{id}: DELETE request for removing order with id: {}", id);
         orderService.remove(id);
         log.info("/api/orders/{id}: Order with id {} removed, Response status={}", id, HttpStatus.NO_CONTENT);

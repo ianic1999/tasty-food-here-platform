@@ -66,7 +66,7 @@ public class BookingController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> remove(@PathVariable Long id) {
+    public ResponseEntity<Void> remove(@PathVariable Long id) {
         log.info("/api/bookings/{id}: DELETE request for removing booking with id: {}", id);
         bookingService.remove(id);
         log.info("/api/bookings/{id}: Booking with id {} removed, Response status={}", id, HttpStatus.NO_CONTENT);
