@@ -29,21 +29,22 @@ public class User implements UserDetails {
     @GenericGenerator(name = "incrementDomain", strategy = "increment")
     private Long id;
 
-    @NotEmpty
+    @NotEmpty(message = "First name should be provided")
     private String firstName;
 
-    @NotEmpty
+    @NotEmpty(message = "Last name should be provided")
     private String lastName;
 
-    @Email
+    @Email(message = "Email is invalid")
     @Column(unique = true)
     private String email;
 
-    @Pattern(regexp = "\\+373[0-9]{8}")
+    @Pattern(regexp = "\\+373[0-9]{8}", message = "Invalid phone number format")
     @Column(unique = true)
+    @NotEmpty(message = "Phone should be provided")
     private String phone;
 
-    @NotEmpty
+    @NotEmpty(message = "Password should be provided")
     private String password;
 
     private Boolean confirmed;

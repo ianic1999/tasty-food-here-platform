@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.validation.constraints.Positive;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +24,7 @@ public class Table {
 
     private Integer ordinalNumber;
 
+    @Positive(message = "Number of spots should be positive")
     private Integer nrOfSpots;
 
     @Builder.Default

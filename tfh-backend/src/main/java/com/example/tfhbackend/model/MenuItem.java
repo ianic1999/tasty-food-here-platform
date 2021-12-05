@@ -8,6 +8,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.util.List;
 
@@ -22,14 +23,17 @@ public class MenuItem {
     @GenericGenerator(name = "incrementDomain", strategy = "increment")
     private Long id;
 
-    @NotEmpty
+    @NotEmpty(message = "Menu item name should be provided")
     private String name;
 
-    @Positive
+    @Positive(message = "Price should be positive")
+    @NotNull(message = "Menu item price should be provided")
     private Double price;
 
+    @NotEmpty(message = "Menu item image should be provided")
     private String image;
 
+    @NotNull(message = "Menu item category should be provided")
     @Enumerated(EnumType.STRING)
     private FoodCategory category;
 

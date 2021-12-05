@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,10 +23,12 @@ public class Booking {
     @GenericGenerator(name = "incrementDomain", strategy = "increment")
     private Long id;
 
+    @NotNull(message = "Booking time should be provided")
     private LocalDateTime time;
 
     private Integer duration;
 
+    @NotNull(message = "Booking table should be provided")
     @ManyToOne(fetch = FetchType.LAZY)
     private Table table;
 

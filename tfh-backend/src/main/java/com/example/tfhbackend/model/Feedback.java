@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @AllArgsConstructor
@@ -18,9 +21,12 @@ public class Feedback {
     @GenericGenerator(name = "incrementDomain", strategy = "increment")
     private Long id;
 
+    @NotEmpty(message = "Feedback message should be provided")
     @Column(columnDefinition = "TEXT", name = "feedback_text")
     private String text;
 
+    @Min(value = 1, message = "Rating value is in range 1-5")
+    @Max(value = 5, message = "Rating value is in range 1-5")
     private Integer rating;
 
     public Long getId() {
