@@ -1,0 +1,28 @@
+<div class="navbar-div">
+  <mat-list class="navbar-list">
+    <mat-list-item class="navbar-item" (click)="navigate('menu-items', 1)" [ngStyle]="{'background-color' : selectedItem == 1 ? '#777777' : 'transparent'}">
+      <span>MENU ITEMS</span>
+      <mat-icon class="navbar-icon">fastfood</mat-icon>
+    </mat-list-item>
+
+    <mat-list-item class="navbar-item" (click)="navigate('tables', 2)" [ngStyle]="{'background-color' : selectedItem == 2 ? '#777777' : 'transparent'}">
+      <span>TABLES</span>
+      <mat-icon class="navbar-icon">restaurant</mat-icon>
+    </mat-list-item>
+
+    <mat-list-item class="navbar-item" (click)="navigate('feedback', 3)" [ngStyle]="{'background-color' : selectedItem == 3 ? '#777777' : 'transparent'}">
+      <span>FEEDBACK</span>
+      <mat-icon class="navbar-icon">feedback</mat-icon>
+    </mat-list-item>
+
+    <mat-list-item class="navbar-item" (click)="navigate('users', 4)" [ngStyle]="{'background-color' : selectedItem == 4 ? '#777777' : 'transparent'}">
+      <span>USERS</span>
+      <mat-icon class="navbar-icon">supervised_user_circle</mat-icon>
+    </mat-list-item>
+
+    <mat-list-item class="navbar-item" (click)="navigate('diagnostics', 5)" [ngStyle]="{'background-color' : selectedItem == 4 ? '#777777' : 'transparent'}">
+      <span>INFORMATION</span>
+      <mat-icon class="navbar-icon">search</mat-icon>
+    </mat-list-item>
+  </mat-list>
+</div>

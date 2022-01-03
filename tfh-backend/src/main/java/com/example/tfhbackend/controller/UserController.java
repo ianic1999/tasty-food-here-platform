@@ -2,6 +2,7 @@ package com.example.tfhbackend.controller;
 
 import com.example.tfhbackend.dto.MessageDTO;
 import com.example.tfhbackend.dto.UserDTO;
+import com.example.tfhbackend.dto.request.ActivateUserRequest;
 import com.example.tfhbackend.dto.request.UserRequest;
 import com.example.tfhbackend.dto.response.PaginatedResponse;
 import com.example.tfhbackend.dto.response.Response;
@@ -65,11 +66,11 @@ public class UserController {
         );
     }
 
-    @PostMapping("/{id}/activate")
-    public ResponseEntity<Response<MessageDTO>> activate(@PathVariable Long id) {
-        log.info("/api/users/{id}/activate: POST request for activating user with id {}", id);
-        var response = userService.activateUser(id);
-        log.info("/api/users/{id}/activate: User with id {} activated, status: {}", id, HttpStatus.OK);
+    @PostMapping("/activate")
+    public ResponseEntity<Response<MessageDTO>> activate(@RequestBody ActivateUserRequest request) {
+        log.info("/api/users/{id}/activate: POST request for activating user with id {}", request.getUserId());
+        var response = userService.activateUser(request);
+        log.info("/api/users/{id}/activate: User with id {} activated, status: {}", request.getUserId(), HttpStatus.OK);
         return ResponseEntity.ok(
                 new Response<>(response)
         );

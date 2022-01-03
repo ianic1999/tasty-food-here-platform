@@ -2,6 +2,7 @@ package com.example.tfhbackend.service.impl;
 
 import com.example.tfhbackend.dto.MessageDTO;
 import com.example.tfhbackend.dto.UserDTO;
+import com.example.tfhbackend.dto.request.ActivateUserRequest;
 import com.example.tfhbackend.dto.request.UserRequest;
 import com.example.tfhbackend.mapper.Mapper;
 import com.example.tfhbackend.model.User;
@@ -105,8 +106,8 @@ class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public MessageDTO activateUser(Long id) {
-        User user = findUserById(id);
+    public MessageDTO activateUser(ActivateUserRequest request) {
+        User user = findUserById(request.getUserId());
         user.setConfirmed(true);
         return new MessageDTO("User successfully activated");
     }

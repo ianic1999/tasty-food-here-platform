@@ -1,0 +1,84 @@
+
+.stat-card {
+  width: 47%;
+  margin: 5px;
+}
+
+.stat-items {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.stat-icon {
+  margin-left: auto;
+  font-size: 55px;
+  margin-right: 63px;
+  margin-top: 5px;
+}
+
+.stat-title {
+  font-size: 22px;
+  margin-top: 32px;
+}
+
+.stat-metric {
+  font-size: 25px;
+  margin-top: 10px;
+}
+
+.circle {
+  width: 24%;
+  height: 0;
+  padding-bottom: 22%;
+  margin: 2px;
+  border-style: solid;
+  border-radius: 50%;
+  border-width: 10px;
+  border-color: white;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.inline {
+  display: flex;
+  flex-direction: row;
+  margin-top: 5px;
+  margin-left: 7px;
+}
+
+.metrics-card {
+  width: 47%;
+  display: flex;
+  flex-direction: column;
+}
+
+.metrics-card > div {
+  padding-bottom: 5px;
+}
+
+.metrics-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.metric {
+  margin-left: 7px;
+}
+
+.metric-value {
+  margin-left: 10px;
+  text-decoration: underline;
+  color: lightgreen;
+}
+
+.items-per-categories-card {
+  width: 49%;
+}
+
+.bookings-per-day-card {
+  width: 49%;
+  margin-top: 7px;
+  margin-left: 7px;
+}

@@ -1,0 +1,27 @@
+table {
+  width: 98.5%;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+td, th {
+  text-align: center!important;
+}
+
+th {
+  font-size: 16px;
+}
+
+.pagination {
+  display: flex;
+  flex-direction: row;
+  color: white;
+  justify-content: center;
+  margin-top: 5px;
+  position: relative;
+}
+
+.pagination span {
+  margin-top: 9px;
+  padding-right: 8px;
+}

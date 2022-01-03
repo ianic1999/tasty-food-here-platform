@@ -1,0 +1,21 @@
+<div class="center">
+  <mat-toolbar style="width: 33%">LOGIN</mat-toolbar>
+  <mat-card class="my-card" (keydown.enter)="login()">
+    <mat-card-content>
+      <form class="my-form">
+        <mat-form-field class="full-width">
+          <mat-label>Phone</mat-label>
+          <input matInput placeholder="Phone" name="phone" [(ngModel)]="phone">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>Password</mat-label>
+          <input matInput placeholder="Password" name="password" [type]="hide ? 'password' : 'text'" [(ngModel)]="password">
+          <mat-icon matSuffix (click)="hide = !hide" style="cursor: pointer">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions class="container">
+      <button mat-raised-button (click)="login()" color="primary">Login</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

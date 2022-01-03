@@ -211,5 +211,16 @@ databaseChangeLog:
                   name: created_at
                   type: timestamp
 
+  - changeSet:
+      id: update_feedback_add_full_name
+      author: ianic
+      changes:
+        - addColumn:
+            tableName: feedback
+            columns:
+              - column:
+                  name: full_name
+                  type: varchar(256)
+
 
 

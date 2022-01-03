@@ -29,6 +29,9 @@ public class Feedback {
     @Max(value = 5, message = "Rating value is in range 1-5")
     private Integer rating;
 
+    @NotEmpty(message = "Name should be provided")
+    private String fullName;
+
     public Long getId() {
         return id;
     }
@@ -47,6 +50,14 @@ public class Feedback {
 
     public void setRating(Integer rating) {
         this.rating = rating;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     @Override

@@ -15,6 +15,7 @@ class FeedbackDtoMapper implements Mapper<Feedback, FeedbackDTO> {
                 .id(entity.getId())
                 .text(entity.getText())
                 .rating(entity.getRating())
+                .fullName(entity.getFullName())
                 .build();
     }
 }

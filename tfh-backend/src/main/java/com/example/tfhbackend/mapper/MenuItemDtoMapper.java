@@ -14,7 +14,7 @@ class MenuItemDtoMapper implements Mapper<MenuItem, MenuItemDTO> {
                 .name(entity.getName())
                 .price(entity.getPrice())
                 .image(entity.getImage())
-                .category(entity.getCategory().name())
+                .category(entity.getCategory().getName())
                 .build();
     }
 }

@@ -1,0 +1,97 @@
+<div class="inline">
+  <mat-card class="stat-card">
+    <div class="stat-items">
+      <div class="circle">
+        <mat-icon class="stat-icon">person</mat-icon>
+        <span class="stat-title">WAITERS</span>
+        <span class="stat-metric">{{statistics.nrOfWaiters}}</span>
+      </div>
+
+      <div class="circle">
+        <mat-icon class="stat-icon">restaurant</mat-icon>
+        <span class="stat-title">TABLES</span>
+        <span class="stat-metric">{{statistics.nrOfTables}}</span>
+      </div>
+
+      <div class="circle">
+        <mat-icon class="stat-icon">phone_callback</mat-icon>
+        <span class="stat-title">BOOKINGS</span>
+        <span class="stat-metric">{{statistics.nrOfBookings}}</span>
+      </div>
+
+      <div class="circle">
+        <mat-icon class="stat-icon">feedback</mat-icon>
+        <span class="stat-title">FEEDBACK</span>
+        <span class="stat-metric">{{statistics.nrOfFeedback}}</span>
+      </div>
+    </div>
+  </mat-card>
+
+  <mat-card class="metrics-card">
+    <div>
+      <mat-icon>info</mat-icon>
+      <span class="metrics-title">System information</span>
+    </div>
+
+    <ul>
+      <li><span class="metric">Number of available processors:  <span class="metric-value">{{cpuMetric.measurements[0].value}} </span></span></li>
+      <li><span class="metric">Uptime:  <span class="metric-value"> {{uptimeMetric.measurements[0].value / 60}} min </span></span></li>
+      <li><span class="metric">Number of http requests:  <span class="metric-value">  {{requestsMetric.measurements[0].value}} </span></span></li>
+      <li><span class="metric">Max amount of memory:  <span class="metric-value">  {{maxMemoryMetric.measurements[0].value}} </span></span></li>
+      <li><span class="metric">Used amount of memory:  <span class="metric-value">  {{usedMemoryMetric.measurements[0].value}} </span></span></li>
+      <li><span class="metric">Number of loaded classes:  <span class="metric-value">  {{loadedClassesMetric.measurements[0].value}} </span></span></li>
+      <li><span class="metric">Number of unloaded classes:  <span class="metric-value">  {{unloadedClassesMetric.measurements[0].value}} </span></span></li>
+    </ul>
+  </mat-card>
+</div>
+
+<div class="inline">
+  <mat-card class="items-per-categories-card">
+    <apx-chart
+      [title]="itemsPerCategoriesChartOptions.title"
+      [series]="itemsPerCategoriesChartOptions.series"
+      [chart]="itemsPerCategoriesChartOptions.chart"
+      [labels]="itemsPerCategoriesChartOptions.labels"
+      [responsive]="itemsPerCategoriesChartOptions.responsive"
+    ></apx-chart>
+  </mat-card>
+
+  <mat-card class="bookings-per-day-card">
+    <apx-chart
+      [series]="bookingsPerDayChartOptions.series"
+      [chart]="bookingsPerDayChartOptions.chart"
+      [xaxis]="bookingsPerDayChartOptions.xaxis"
+      [grid]="bookingsPerDayChartOptions.grid"
+      [title]="bookingsPerDayChartOptions.title"
+      [stroke]="bookingsPerDayChartOptions.stroke"
+      [responsive]="bookingsPerDayChartOptions.responsive"
+    ></apx-chart>
+  </mat-card>
+</div>
+
+<div class="inline">
+
+  <mat-card class="bookings-per-day-card">
+    <apx-chart
+      [series]="bookingsPerWeekChartOptions.series"
+      [chart]="bookingsPerWeekChartOptions.chart"
+      [xaxis]="bookingsPerWeekChartOptions.xaxis"
+      [grid]="bookingsPerWeekChartOptions.grid"
+      [title]="bookingsPerWeekChartOptions.title"
+      [stroke]="bookingsPerWeekChartOptions.stroke"
+      [responsive]="bookingsPerWeekChartOptions.responsive"
+    ></apx-chart>
+  </mat-card>
+
+  <mat-card class="bookings-per-day-card">
+    <apx-chart
+      [series]="bookingsPerMonthChartOptions.series"
+      [chart]="bookingsPerMonthChartOptions.chart"
+      [xaxis]="bookingsPerMonthChartOptions.xaxis"
+      [grid]="bookingsPerMonthChartOptions.grid"
+      [title]="bookingsPerMonthChartOptions.title"
+      [stroke]="bookingsPerMonthChartOptions.stroke"
+      [responsive]="bookingsPerMonthChartOptions.responsive"
+    ></apx-chart>
+  </mat-card>
+</div>

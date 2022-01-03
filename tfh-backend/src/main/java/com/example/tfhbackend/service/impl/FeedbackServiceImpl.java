@@ -38,6 +38,7 @@ class FeedbackServiceImpl implements FeedbackService {
         Feedback feedback = Feedback.builder()
                 .text(dto.getText())
                 .rating(dto.getRating())
+                .fullName(dto.getFullName())
                 .build();
         return mapper.map(feedbackRepository.save(feedback));
     }

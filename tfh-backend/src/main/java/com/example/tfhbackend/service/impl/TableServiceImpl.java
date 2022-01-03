@@ -13,7 +13,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.Collections;
 
 @Service
@@ -43,7 +42,7 @@ class TableServiceImpl implements TableService {
                 .bookings(Collections.emptyList())
                 .build();
         table = tableRepository.save(table);
-        table.setOrdinalNumber(table.getId().intValue());
+        table.setOrdinalNumber(table.getId().intValue() + 1000);
         return mapper.map(table);
     }
 

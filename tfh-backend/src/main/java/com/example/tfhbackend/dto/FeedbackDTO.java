@@ -13,4 +13,5 @@ public class FeedbackDTO {
     private Long id;
     private String text;
     private Integer rating;
+    private String fullName;
 }

@@ -1,0 +1,12 @@
+<div class="dialog">
+  <mat-card class="dialog-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Number of spots</mat-label>
+      <input matInput type="number" [(ngModel)]="data.table.nrOfSpots">
+    </mat-form-field>
+
+    <mat-card-actions class="container">
+      <button mat-raised-button (click)="submit()" color="primary">Save</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

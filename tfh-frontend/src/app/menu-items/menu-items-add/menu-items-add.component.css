@@ -1,0 +1,18 @@
+.dialog-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#fileUpload {
+  position: absolute;
+  z-index: 9;
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+}
