@@ -65,6 +65,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/api/tables").hasAuthority(UserRole.ADMIN.name())
                 .antMatchers(HttpMethod.PUT, "/api/tables/**").hasAuthority(UserRole.ADMIN.name())
                 .antMatchers(HttpMethod.DELETE, "/api/tables/**").hasAuthority(UserRole.ADMIN.name())
+                .antMatchers(HttpMethod.GET, "/api/users/**").hasAuthority(UserRole.ADMIN.name())
                 .antMatchers(HttpMethod.GET, "/api/feedbacks/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/feedbacks").permitAll()
                 .antMatchers(HttpMethod.DELETE, "/api/feedbacks/**").hasAuthority(UserRole.ADMIN.name())
