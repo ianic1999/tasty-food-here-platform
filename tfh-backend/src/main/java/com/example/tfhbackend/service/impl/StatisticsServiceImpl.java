@@ -60,7 +60,7 @@ class StatisticsServiceImpl implements StatisticsService {
     @Override
     @Transactional(readOnly = true)
     public List<BookingsPerDayStatisticsDTO> getBookingsPerDayStatistics() {
-        LocalDate today = LocalDate.now();
+        LocalDate today = getTodayDate();
         var statistics = bookingRepository.findAll()
                 .stream()
                 .filter(booking -> booking.getTime().toLocalDate().isEqual(today))
@@ -120,7 +120,7 @@ class StatisticsServiceImpl implements StatisticsService {
     }
 
     private boolean isDateInThisWeek(LocalDate date) {
-        LocalDate today = LocalDate.now();
+        LocalDate today = getTodayDate();
         return today.minusDays(today.getDayOfWeek().getValue()).isBefore(date)
                 && today.plusDays(8 - today.getDayOfWeek().getValue()).isAfter(date);
     }
@@ -128,7 +128,7 @@ class StatisticsServiceImpl implements StatisticsService {
     @Override
     @Transactional(readOnly = true)
     public List<BookingsPerMonthStatisticsDTO> getBookingsPerMonthStatistics() {
-        LocalDate today = LocalDate.now();
+        LocalDate today = getTodayDate();
         var statistics = bookingRepository.findAll()
                 .stream()
                 .filter(booking -> booking.getTime().getMonthValue() == today.getMonthValue())
@@ -149,12 +149,16 @@ class StatisticsServiceImpl implements StatisticsService {
     }
 
     private void addMissingMonthDaysToStatistics(List<BookingsPerMonthStatisticsDTO> statistics) {
-        LocalDate today = LocalDate.now();
+        LocalDate today = getTodayDate();
         int nrOfDays = today.getMonth().length(today.getYear() % 4 == 0);
         IntStream.rangeClosed(1, nrOfDays)
                 .filter(day -> statistics.stream().noneMatch(stat -> stat.getDay() == day))
                 .mapToObj(day -> new BookingsPerMonthStatisticsDTO(day, 0))
                 .forEach(statistics::add);
         statistics.sort(Comparator.comparingInt(BookingsPerMonthStatisticsDTO::getDay));
+    }
+
+    LocalDate getTodayDate() {
+        return LocalDate.now();
     }
 }
