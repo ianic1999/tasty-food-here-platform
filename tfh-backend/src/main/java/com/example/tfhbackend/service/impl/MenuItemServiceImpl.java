@@ -1,6 +1,7 @@
 package com.example.tfhbackend.service.impl;
 
 import com.example.tfhbackend.dto.MenuItemDTO;
+import com.example.tfhbackend.dto.MenuItemsByCategoryDTO;
 import com.example.tfhbackend.mapper.Mapper;
 import com.example.tfhbackend.model.MenuItem;
 import com.example.tfhbackend.model.enums.FoodCategory;
@@ -17,10 +18,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -37,6 +36,18 @@ class MenuItemServiceImpl implements MenuItemService {
     public Page<MenuItemDTO> get(int page, int perPage) {
         Pageable pageable = PageRequest.of(page - 1, perPage);
         return menuItemRepository.findAll(pageable).map(mapper::map);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<MenuItemsByCategoryDTO> getItemsByCategories() {
+        return menuItemRepository.findAll()
+                .stream()
+                .collect(Collectors.groupingBy(MenuItem::getCategory))
+                .entrySet()
+                .stream()
+                .map(entry -> new MenuItemsByCategoryDTO(entry.getKey().getName(), mapper.mapList(entry.getValue())))
+                .collect(Collectors.toList());
     }
 
     @Override

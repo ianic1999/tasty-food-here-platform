@@ -1,6 +1,7 @@
 package com.example.tfhbackend.controller;
 
 import com.example.tfhbackend.dto.MenuItemDTO;
+import com.example.tfhbackend.dto.MenuItemsByCategoryDTO;
 import com.example.tfhbackend.dto.response.PaginatedResponse;
 import com.example.tfhbackend.dto.response.Response;
 import com.example.tfhbackend.service.MenuItemService;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/menu_items")
@@ -29,6 +31,13 @@ public class MenuItemController {
         log.info("/api/menu_items: Response status: {}", HttpStatus.OK);
         return ResponseEntity.ok(
                 new PaginatedResponse<>(response)
+        );
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<Response<List<MenuItemsByCategoryDTO>>> getByCategories() {
+        return ResponseEntity.ok(
+                new Response<>(menuItemService.getItemsByCategories())
         );
     }
 

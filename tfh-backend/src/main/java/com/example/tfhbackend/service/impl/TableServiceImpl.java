@@ -1,6 +1,7 @@
 package com.example.tfhbackend.service.impl;
 
 import com.example.tfhbackend.dto.TableDTO;
+import com.example.tfhbackend.dto.UserDTO;
 import com.example.tfhbackend.mapper.Mapper;
 import com.example.tfhbackend.model.Table;
 import com.example.tfhbackend.model.exception.EntityNotFoundException;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -26,6 +28,12 @@ class TableServiceImpl implements TableService {
     public Page<TableDTO> get(int page, int perPage) {
         Pageable pageable = PageRequest.of(page - 1, perPage);
         return tableRepository.findAll(pageable).map(mapper::map);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<TableDTO> getForWaiter(UserDTO currentUser) {
+        return mapper.mapList(tableRepository.findByWaiter_Id(currentUser.getId()));
     }
 
     @Override

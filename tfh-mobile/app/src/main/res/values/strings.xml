@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">TFH Mobile</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="login_label">Login</string>
+    <string name="phone_label">Phone</string>
+    <string name="phone_prefix">+373</string>
+    <string name="password_label">Password</string>
+    <string name="sign_in_to_continue_message">Sign in to continue</string>
+    <string name="no_account_question">No account?</string>
+    <string name="register_now_label">Register now</string>
+    <string name="tasty_food_here_label">Tasty Food Here</string>
+    <string name="log_in_message">Log in</string>
+    <string name="register_label">Register</string>
+    <string name="create_new_account_label">Create new\nAccount</string>
+    <string name="first_name_label">First Name</string>
+    <string name="last_name_label">Last Name</string>
+    <string name="email_label">Email</string>
+    <string name="confirm_password_lable">Confirm Password</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="my_tables_label">My tables</string>
+    <string name="table_1_label">Table #1</string>
+    <string name="orders_lable">Orders</string>
+    <string name="add_order_label">Add order</string>
+</resources>

@@ -14,6 +14,6 @@ import java.util.List;
 public class OrderDTO {
     private Long id;
     private Long bookingId;
-    private List<MenuItemDTO> items;
+    private List<MenuItemWithCountDTO> items;
 
 }

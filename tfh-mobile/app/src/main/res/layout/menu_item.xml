@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10sp"
+    android:layout_marginRight="10sp"
+    android:layout_marginBottom="10sp"
+    android:paddingTop="5sp"
+    android:paddingBottom="5dp">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/menuItemName"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:text="Pizza Quatro Stagionni"
+        android:textColor="@color/black"
+        android:textSize="10sp"
+        android:paddingTop="5sp"
+        android:paddingBottom="5sp">
+    </com.google.android.material.textview.MaterialTextView>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/menuItemCount"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:textAlignment="center"
+        android:text="#2"
+        android:textColor="@color/black"
+        android:textSize="10sp"
+        android:layout_marginLeft="210dp"
+        android:paddingTop="5sp"
+        android:paddingBottom="5sp">
+    </com.google.android.material.textview.MaterialTextView>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/menuItemPrice"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:textAlignment="textEnd"
+        android:text="100 lei"
+        android:textColor="@color/black"
+        android:textSize="10sp"
+        android:layout_marginLeft="260dp"
+        android:paddingTop="5sp"
+        android:paddingBottom="5sp">
+    </com.google.android.material.textview.MaterialTextView>
+
+</androidx.cardview.widget.CardView>

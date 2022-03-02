@@ -38,6 +38,12 @@ class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional(readOnly = true)
+    public List<OrderDTO> getForTable(Long tableId) {
+        return mapper.mapList(orderRepository.findByTableId(tableId));
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public OrderDTO getById(Long id) {
         return mapper.map(findOrderById(id));
     }

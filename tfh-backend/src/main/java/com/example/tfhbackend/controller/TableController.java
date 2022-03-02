@@ -1,15 +1,20 @@
 package com.example.tfhbackend.controller;
 
+import com.example.tfhbackend.dto.OrderDTO;
 import com.example.tfhbackend.dto.TableDTO;
 import com.example.tfhbackend.dto.response.PaginatedResponse;
 import com.example.tfhbackend.dto.response.Response;
+import com.example.tfhbackend.service.OrderService;
 import com.example.tfhbackend.service.TableService;
+import com.example.tfhbackend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/tables")
@@ -18,6 +23,8 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class TableController {
     private final TableService tableService;
+    private final UserService userService;
+    private final OrderService orderService;
 
     @GetMapping
     public ResponseEntity<PaginatedResponse<TableDTO>> get(@RequestParam(defaultValue = "1") int page,
@@ -30,6 +37,13 @@ public class TableController {
         );
     }
 
+    @GetMapping("/waiter")
+    public ResponseEntity<Response<List<TableDTO>>> getForWaiter() {
+        return ResponseEntity.ok(
+                new Response<>(tableService.getForWaiter(userService.getCurrentLoggedUser()))
+        );
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Response<TableDTO>> getById(@PathVariable Long id) {
         log.info("/api/tables/{id}: GET request with parameters: id: {}", id);
@@ -37,6 +51,13 @@ public class TableController {
         log.info("/api/tables/{id}: Response Status: {}", HttpStatus.OK);
         return ResponseEntity.ok(
                 new Response<>(response)
+        );
+    }
+
+    @GetMapping("/{id}/orders")
+    public ResponseEntity<Response<List<OrderDTO>>> getOrdersForTable(@PathVariable Long id) {
+        return ResponseEntity.ok(
+                new Response<>(orderService.getForTable(id))
         );
     }
 

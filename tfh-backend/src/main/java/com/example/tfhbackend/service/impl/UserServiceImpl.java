@@ -75,7 +75,7 @@ class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public UserDTO update(UserRequest request) {
+    public UserDTO update(UserRequest request) {    
         User user = findUserById(request.getId());
 
         user.setFirstName(request.getFirstName());
