@@ -14,6 +14,9 @@ logs/**
 .springBeans
 .sts4-cache
 
+### Images ###
+src/main/resources/images/menu/**
+
 ### IntelliJ IDEA ###
 .idea
 *.iws
