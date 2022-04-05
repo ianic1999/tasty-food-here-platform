@@ -1,0 +1,46 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    container_name: db
+    restart: unless-stopped
+    volumes:
+      - db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=tfh_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+
+  api:
+    build:
+        context: ../tfh-backend/
+        dockerfile: ./Dockerfile
+    environment:
+      DATABASE_HOST: 'db'
+      DATABASE_PORT: '5432'
+      DATABASE_USER: 'postgres'
+      DATABASE_PASSWORD: 'postgres'
+      DATABASE_NAME: 'tfh_db'
+      JWT_SECRET: 'UmkoN45x6FSlpOgT2ofDtCK0YbuGFot8lBqjpqVzaJEQOqZFlXCQOPk7hXAd7qrxmjolSQk3hQOrLnedBU10eC6tBpHGIxtTZY7YBGuJqbSx9VtFt1ObFPLF2iwzdeUsbKdjh35sI293cgYfxl4qfVAwu3f4sDSTvMjIjxyPj403jlRp26nCcqDaCsglcpk7qystw28iwhXuxDAnnGUkNvDsHAmMRKFnsM3eA4oaCQkAkfArtrBDrMuGS5uumOzz'
+    ports:
+      - "8081:8081"
+    expose:
+      - 8081
+    depends_on:
+      - db
+      
+  frontend:
+    build:
+        context: ../tfh-frontend/
+        dockerfile: ./Dockerfile
+    ports:
+      - "4200:80"
+    expose:
+      - 4200
+    depends_on:
+      - api
+
+volumes:
+  db:
