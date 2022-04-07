@@ -113,10 +113,10 @@ pipeline {
                 stage('deploy apps') {
                     steps {
                         script {
-                            sh('docker stop tfh-backend')
-                            sh('docker stop tfh-frontend')
-                            sh('docker rm tfh-backend')
-                            sh('docker rm tfh-frontend')
+                            sh('docker stop tfh-backend || true')
+                            sh('docker stop tfh-frontend || true')
+                            sh('docker rm tfh-backend || true')
+                            sh('docker rm tfh-frontend || true')
                             sh('docker image rm registry.digitalocean.com/tfh-container/tfh-backend')
                             sh('docker image rm registry.digitalocean.com/tfh-container/tfh-frontend')
                             sh('docker pull registry.digitalocean.com/tfh-container/tfh-backend')
