@@ -97,7 +97,7 @@ pipeline {
                                     }
                                 }
 
-                                stage('push backend image') {
+                                stage('push frontend image') {
                                     steps {
                                         script {
                                             sh('docker tag $backendImage registry.digitalocean.com/$container/$backendImage')
