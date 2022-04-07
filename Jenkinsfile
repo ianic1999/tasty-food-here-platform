@@ -12,7 +12,7 @@ pipeline {
         frontendImage = ""
     }
 
-    steps {
+    stages {
         stage('Init') {
             steps {
                 script {
