@@ -32,9 +32,7 @@ pipeline {
                         script {
                             dir('tfh-backend') {
                                 echo 'Building tfh-backend'
-                                withMaven(maven: 'maven3.5.2', mavenOpts: '-Dmaven.test.skip=true') {
-                                    sh("mvn clean install")
-                                }
+                                sh("mvn clean install -DskipTests")
                             }
                         }
                     }
