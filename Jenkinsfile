@@ -57,7 +57,7 @@ pipeline {
                                 script {
                                     dir('tfh-backend') {
                                         echo 'Building docker backend'
-                                        sh('docker build -t $backendImage .')
+                                        sh('docker build -t tfh-backend .')
                                     }
                                 }
                             }
@@ -68,7 +68,7 @@ pipeline {
                                 script {
                                     dir('tfh-frontend') {
                                         echo 'Building docker frontend'
-                                        sh('docker build -t $frontendImage .')
+                                        sh('docker build -t tfh-frontend .')
                                     }
                                 }
                             }
@@ -77,7 +77,7 @@ pipeline {
                         stage('connect to digital ocean') {
                             steps {
                                 script {
-                                    sh('docker login -u $digitalOceanApiKey -p $digitalOceanApiKey registry.digitalocean.com')
+                                    sh('docker login -u dop_v1_4e206e9dc4d2adf51c2f6c31fe6bac04bfc395fb6522a6330bedb8c85cedf00f -p dop_v1_4e206e9dc4d2adf51c2f6c31fe6bac04bfc395fb6522a6330bedb8c85cedf00f registry.digitalocean.com')
                                 }
                             }
                         }
@@ -87,8 +87,8 @@ pipeline {
                                 stage('push backend image') {
                                     steps {
                                         script {
-                                            sh('docker tag $backendImage registry.digitalocean.com/$container/$backendImage')
-                                            sh('docker push registry.digitalocean.com/$container/$backendImage')
+                                            sh('docker tag tfh-backend registry.digitalocean.com/tfh-container/tfh-backend')
+                                            sh('docker push registry.digitalocean.com/tfh-container/tfh-backend')
                                         }
                                     }
                                 }
@@ -96,8 +96,8 @@ pipeline {
                                 stage('push frontend image') {
                                     steps {
                                         script {
-                                            sh('docker tag $backendImage registry.digitalocean.com/$container/$backendImage')
-                                            sh('docker push registry.digitalocean.com/$container/$backendImage')
+                                            sh('docker tag tfh-frontend registry.digitalocean.com/tfh-container/tfh-frontend')
+                                            sh('docker push registry.digitalocean.com/tfh-container/tfh-frontend')
                                         }
                                     }
                                 }
