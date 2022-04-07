@@ -43,7 +43,7 @@ pipeline {
                         script {
                             dir('tfh-frontend') {
                                 echo 'Building tfh-frontend'
-                                sh('npm i')
+                                sh('npm i --force')
                                 sh('npm run build')
                             }
                         }
