@@ -77,7 +77,7 @@ pipeline {
                         stage('connect to digital ocean') {
                             steps {
                                 script {
-                                    sh('docker login -u dop_v1_7e1ec920140c75b73f66992273ee9da9da47e14731f560e38da82ac9da611e82 -p dop_v1_7e1ec920140c75b73f66992273ee9da9da47e14731f560e38da82ac9da611e82 registry.digitalocean.com')
+                                    sh('docker login -u $digitalOceanApiToken -p $digitalOceanApiToken registry.digitalocean.com')
                                 }
                             }
                         }
