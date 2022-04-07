@@ -43,10 +43,8 @@ pipeline {
                         script {
                             dir('tfh-frontend') {
                                 echo 'Building tfh-frontend'
-                                nodejs('nodejs12.16') {
-                                    sh('npm i')
-                                    sh('npm run build')
-                                }
+                                sh('npm i')
+                                sh('npm run build')
                             }
                         }
                     }
