@@ -121,8 +121,8 @@ pipeline {
                             sh('docker image rm registry.digitalocean.com/tfh-container/tfh-frontend')
                             sh('docker pull registry.digitalocean.com/tfh-container/tfh-backend')
                             sh('docker pull registry.digitalocean.com/tfh-container/tfh-frontend')
-                            sh('docker run -e DATABASE_HOST=$DATABASE_HOST -e DATABASE_PORT=$DATABASE_PORT -e DATABASE_NAME=$DATABASE_NAME -e DATABASE_USER=$DATABASE_USER -e DATABASE_PASSWORD=$DATABASE_PASSWORD -e JWT_SECRET=$JWT_SECRET -p 8081:8081 --name tfh-backend -t registry.digitalocean.com/tfh-container/tfh-backend')
-                            sh('docker run -p 80:80 --name tfh-frontend -t registry.digitalocean.com/tfh-container/tfh-frontend ')
+                            sh('docker run -e DATABASE_HOST=$DATABASE_HOST -e DATABASE_PORT=$DATABASE_PORT -e DATABASE_NAME=$DATABASE_NAME -e DATABASE_USER=$DATABASE_USER -e DATABASE_PASSWORD=$DATABASE_PASSWORD -e JWT_SECRET=$JWT_SECRET -p 8081:8081 --name tfh-backend registry.digitalocean.com/tfh-container/tfh-backend')
+                            sh('docker run -p 80:80 --name tfh-frontend registry.digitalocean.com/tfh-container/tfh-frontend ')
                         }
                     }
                 }
