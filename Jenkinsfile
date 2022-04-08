@@ -5,29 +5,10 @@ pipeline {
         disableConcurrentBuilds()
     }
 
-    environment {
-        digitalOceanApiKey = ""
-        dockerRegistry = ""
-        backendImage = ""
-        frontendImage = ""
-    }
-
     stages {
-        stage('Init') {
-            steps {
-                script {
-                    echo 'Initiate variables'
-                    digitalOceanApiKey = "dop_v1_4e206e9dc4d2adf51c2f6c31fe6bac04bfc395fb6522a6330bedb8c85cedf00f"
-                    dockerRegistry = "tfh-container"
-                    backendImage = "tfh-backend"
-                    frontendImage = "tfh-frontend"
-                }
-            }
-        }
-
         stage('Build') {
             stages {
-                stage('Build tfh-backend') {
+                stage('build tfh-backend') {
                     steps {
                         script {
                             dir('tfh-backend') {
@@ -38,7 +19,7 @@ pipeline {
                     }
                 }
 
-                stage('Build tfh-frontend') {
+                stage('build tfh-frontend') {
                     steps {
                         script {
                             dir('tfh-frontend') {
@@ -50,7 +31,7 @@ pipeline {
                     }
                 }
 
-                stage('Build docker') {
+                stage('build docker') {
                     stages {
                         stage('build docker backend') {
                             steps {
