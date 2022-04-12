@@ -11,7 +11,7 @@ import {BookingsPerMonthModel} from "../dto/bookings-per-month.model";
 
 @Injectable()
 export class StatisticsService {
-  private url = 'http://localhost:8081/api/statistics';
+  private url = 'http://104.248.205.251:8081/api/statistics';
 
   constructor(private http: HttpClient) {
   }
