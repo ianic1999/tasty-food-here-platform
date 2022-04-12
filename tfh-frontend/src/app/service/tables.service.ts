@@ -7,7 +7,7 @@ import {TableModel} from "../dto/table.model";
 
 @Injectable()
 export class TablesService {
-  private url = 'http://localhost:8081/api/tables'
+  private url = 'http://104.248.205.251:8081/api/tables'
 
   constructor(private http: HttpClient) {
   }
