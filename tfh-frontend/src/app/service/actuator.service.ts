@@ -5,7 +5,7 @@ import {HttpClient} from "@angular/common/http";
 
 @Injectable()
 export class ActuatorService {
-  private url = 'http://localhost:8081/actuator/metrics';
+  private url = 'http://104.248.205.251:8081/actuator/metrics';
 
   constructor(private http: HttpClient) {
   }
