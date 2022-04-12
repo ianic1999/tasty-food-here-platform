@@ -7,7 +7,7 @@ import {JwtModel} from "../dto/jwt.model";
 @Injectable()
 export class AuthenticationService {
 
-  private url = 'http://localhost:8081/api/auth/login';
+  private url = 'http://104.248.205.251:8081/api/auth/login';
 
   constructor(private http: HttpClient) {
   }
