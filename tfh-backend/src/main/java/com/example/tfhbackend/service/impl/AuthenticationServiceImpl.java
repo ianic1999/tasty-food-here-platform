@@ -19,6 +19,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -29,6 +30,7 @@ class AuthenticationServiceImpl implements AuthenticationService {
     private final JwtTokenUtil jwtTokenUtil;
 
     @Override
+    @Transactional
     public MessageDTO register(UserRequest request) {
         request.setPassword(passwordEncoder.encode(request.getPassword()));
         userService.add(request);
@@ -36,14 +38,17 @@ class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     @Override
+    @Transactional
     public JwtDTO authenticate(AuthenticationRequest request) {
         String phone = request.getPhone();
         UserDetails userDetails = getUserDetails(phone);
         User user = (User) userDetails;
         if (!user.getConfirmed())
             throw new AuthenticationException("You can't login because you are not activated yet");
-        if (passwordEncoder.matches(request.getPassword(), user.getPassword()))
+        if (passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+            user.setDeviceId(request.getDeviceId());
             return generateAuthenticationToken(request, userDetails);
+        }
         throw new AuthenticationException("Authentication error");
     }
 

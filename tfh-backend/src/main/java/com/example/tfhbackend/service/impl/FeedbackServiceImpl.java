@@ -2,8 +2,11 @@ package com.example.tfhbackend.service.impl;
 
 import com.example.tfhbackend.dto.FeedbackDTO;
 import com.example.tfhbackend.mapper.Mapper;
+import com.example.tfhbackend.model.Booking;
 import com.example.tfhbackend.model.Feedback;
+import com.example.tfhbackend.model.exception.CustomRuntimeException;
 import com.example.tfhbackend.model.exception.EntityNotFoundException;
+import com.example.tfhbackend.repository.BookingRepository;
 import com.example.tfhbackend.repository.FeedbackRepository;
 import com.example.tfhbackend.service.FeedbackService;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 class FeedbackServiceImpl implements FeedbackService {
     private final FeedbackRepository feedbackRepository;
+    private final BookingRepository bookingRepository;
     private final Mapper<Feedback, FeedbackDTO> mapper;
 
     @Override
@@ -35,21 +39,16 @@ class FeedbackServiceImpl implements FeedbackService {
     @Override
     @Transactional
     public FeedbackDTO add(FeedbackDTO dto) {
+        Booking booking = bookingRepository.findByReferenceId(dto.getBookingId())
+                .orElseThrow(() -> new EntityNotFoundException("Invalid booking ID: " + dto.getBookingId()));
+        if (feedbackRepository.findByBookingId(dto.getBookingId()).isPresent())
+            throw new CustomRuntimeException("Feedback already submitted for this booking");
         Feedback feedback = Feedback.builder()
                 .text(dto.getText())
                 .rating(dto.getRating())
-                .fullName(dto.getFullName())
+                .bookingId(booking.getReferenceId())
                 .build();
         return mapper.map(feedbackRepository.save(feedback));
-    }
-
-    @Override
-    @Transactional
-    public FeedbackDTO update(FeedbackDTO dto) {
-        Feedback feedback = findFeedbackById(dto.getId());
-        feedback.setText(dto.getText());
-        feedback.setRating(dto.getRating());
-        return mapper.map(feedback);
     }
 
     @Override

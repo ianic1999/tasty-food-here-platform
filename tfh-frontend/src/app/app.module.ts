@@ -40,6 +40,20 @@ import {ActuatorService} from "./service/actuator.service";
 import {StatisticsService} from "./service/statistics.service";
 import {NgApexchartsModule} from "ng-apexcharts";
 import { TablesEditComponent } from './tables/tables-edit/tables-edit.component';
+import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
+import { HomeComponent } from './home/home.component';
+import {MatTabsModule} from "@angular/material/tabs";
+import { MenuComponent } from './menu/menu.component';
+import { ClientFeedbackComponent } from './client-feedback/client-feedback.component';
+import { BookingComponent } from './booking/booking.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
+import {TableBookingService} from "./service/table-booking.service";
+import {DatePipe} from "@angular/common";
+import { BookingTablesComponent } from './booking-tables/booking-tables.component';
+import { BookingConfirmComponent } from './booking-confirm/booking-confirm.component';
+import {BookingService} from "./service/booking.service";
+import {NgxStarRatingModule} from "ngx-star-rating";
 
 @NgModule({
   declarations: [
@@ -55,7 +69,14 @@ import { TablesEditComponent } from './tables/tables-edit/tables-edit.component'
     UsersListComponent,
     LoginComponent,
     AdminDiagnosticsComponent,
-    TablesEditComponent
+    TablesEditComponent,
+    NavigationBarComponent,
+    HomeComponent,
+    MenuComponent,
+    ClientFeedbackComponent,
+    BookingComponent,
+    BookingTablesComponent,
+    BookingConfirmComponent
   ],
   imports: [
     BrowserModule,
@@ -75,10 +96,14 @@ import { TablesEditComponent } from './tables/tables-edit/tables-edit.component'
     NgxMatFileInputModule,
     FormsModule,
     MatToolbarModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    MatTabsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    NgxStarRatingModule
   ],
-  providers: [MenuItemsService, TablesService, FeedbackService,
-    UsersService, AuthenticationService, ActuatorService, StatisticsService,
+  providers: [DatePipe, MenuItemsService, TablesService, FeedbackService, BookingService,
+    UsersService, AuthenticationService, ActuatorService, StatisticsService, TableBookingService,
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
   ],

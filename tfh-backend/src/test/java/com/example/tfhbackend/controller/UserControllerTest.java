@@ -65,6 +65,7 @@ public class UserControllerTest {
                 "+37378998899",
                 "user@mail.com",
                 "WAITER",
+                null,
                 true
         );
         userRequest = new UserRequest(

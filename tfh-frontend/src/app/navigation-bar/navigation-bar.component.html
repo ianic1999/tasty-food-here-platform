@@ -1,0 +1,26 @@
+<mat-toolbar color="primary" class="mat-elevation-z8 header">
+  <div class="navigation">
+    <nav mat-tab-nav-bar [backgroundColor]="'primary'">
+      <img id="icon" src="../../assets/img/logo.png" alt="Logo"/>
+      <a mat-tab-link (click)="navigate('menu')">
+        Menu
+      </a>
+      <a mat-tab-link (click)="navigate('bookings')">
+        Booking
+      </a>
+      <a mat-tab-link (click)="navigate('feedback')">
+        Feedback
+      </a>
+<!--      <a mat-tab-link>-->
+<!--        Contact-->
+<!--      </a>-->
+    </nav>
+    <div class="contact">
+      <mat-icon class="call-icon">call</mat-icon>
+      <div>
+        <span>0 (22) 22-33-11</span>
+        <span>0 (69) 99-88-99</span>
+      </div>
+    </div>
+  </div>
+</mat-toolbar>

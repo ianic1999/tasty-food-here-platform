@@ -65,7 +65,7 @@ class UserServiceImpl implements UserService {
                 .phone(request.getPhone())
                 .email(request.getEmail())
                 .confirmed(false)
-                .role(UserRole.valueOf(request.getRole()))
+                .role(UserRole.WAITER)
                 .password(request.getPassword())
                 .tables(Collections.emptyList())
                 .build();

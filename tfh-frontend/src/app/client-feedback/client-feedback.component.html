@@ -1,0 +1,29 @@
+<div class="page-border">
+  <div class="feedback-container">
+    <div class="feedback-title">
+      <span>Share some feelings about our restaurant</span>
+    </div>
+
+    <div class="align-row">
+      <div class="feedback">
+        <div class="feedback-form">
+          <mat-form-field appearance="fill" class="input">
+            <mat-label>Booking ID</mat-label>
+            <input matInput placeholder="Ex. 12345678" [(ngModel)]="bookingId">
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="input">
+            <mat-label>Leave a comment</mat-label>
+            <textarea matInput [(ngModel)]="comments"></textarea>
+          </mat-form-field>
+        </div>
+
+        <button mat-button (click)="add()">Submit</button>
+      </div>
+
+      <div class="logo">
+        <img src="assets/img/logo.png" alt="logo"/>
+      </div>
+    </div>
+  </div>
+</div>

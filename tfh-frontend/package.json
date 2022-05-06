@@ -25,6 +25,7 @@
     "angular": "^1.8.2",
     "bootstrap": "^5.1.3",
     "ng-apexcharts": "^1.6.0",
+    "ngx-star-rating": "^2.1.0",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

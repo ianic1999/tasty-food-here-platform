@@ -2,6 +2,7 @@ package com.example.tfhbackend.controller;
 
 import com.example.tfhbackend.dto.BookingDTO;
 import com.example.tfhbackend.dto.FeedbackDTO;
+import com.example.tfhbackend.dto.request.BookingConfirmationRequest;
 import com.example.tfhbackend.dto.request.BookingRequest;
 import com.example.tfhbackend.dto.response.PaginatedResponse;
 import com.example.tfhbackend.dto.response.Response;
@@ -63,6 +64,14 @@ public class BookingController {
         return ResponseEntity.ok(
                 new Response<>(response)
         );
+    }
+
+    @PostMapping("/{id}/confirm")
+    public ResponseEntity<Void> confirm(@PathVariable Long id,
+                                        @RequestBody BookingConfirmationRequest confirmationRequest) {
+        confirmationRequest.setBookingId(id);
+        bookingService.confirm(confirmationRequest);
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{id}")

@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.Environment;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -17,7 +16,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.header.writers.ReferrerPolicyHeaderWriter;
 
@@ -28,7 +26,7 @@ import org.springframework.security.web.header.writers.ReferrerPolicyHeaderWrite
         jsr250Enabled = true,
         securedEnabled = true
 )
-@RequiredArgsConstructor(onConstructor_ = {@Autowired})
+@RequiredArgsConstructor
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
     private final AccessHandlerConfiguration accessHandlerConfig;
@@ -58,16 +56,21 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/images/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/auth/register").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/menu_items").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/menu_items/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/menu_items").permitAll()
                 .antMatchers(HttpMethod.PATCH, "/api/menu_items/**").permitAll()
                 .antMatchers(HttpMethod.DELETE, "/api/menu_items/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/tables").hasAuthority(UserRole.ADMIN.name())
                 .antMatchers(HttpMethod.PUT, "/api/tables/**").hasAuthority(UserRole.ADMIN.name())
                 .antMatchers(HttpMethod.DELETE, "/api/tables/**").hasAuthority(UserRole.ADMIN.name())
+                .antMatchers(HttpMethod.POST, "/api/bookings").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/bookings/*/confirm").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/users/**").hasAuthority(UserRole.ADMIN.name())
                 .antMatchers(HttpMethod.GET, "/api/feedbacks/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/feedbacks").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/arduino/call/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/arduino/sms").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/tables/free").permitAll()
                 .antMatchers(HttpMethod.DELETE, "/api/feedbacks/**").hasAuthority(UserRole.ADMIN.name())
                 .antMatchers("/api/users/activate/**").hasAuthority(UserRole.ADMIN.name())
                 .anyRequest().authenticated()

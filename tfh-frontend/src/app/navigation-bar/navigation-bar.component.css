@@ -1,0 +1,38 @@
+.header {
+  height: 80px;
+}
+
+#icon {
+  width: 100px;
+}
+
+a {
+  font-size: 20px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.navigation {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+}
+
+.contact {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  right: 70px;
+}
+
+.contact div {
+  display: flex;
+  flex-direction: column;
+  padding-left: 40px;
+}
+
+.call-icon {
+  font-size: 50px;
+  padding-top: 8px;
+}

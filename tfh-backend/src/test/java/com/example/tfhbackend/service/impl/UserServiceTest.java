@@ -158,6 +158,7 @@ public class UserServiceTest {
                     "+37367898989",
                     "ion@mail.com",
                     "WAITER",
+                    null,
                     true
             );
         }

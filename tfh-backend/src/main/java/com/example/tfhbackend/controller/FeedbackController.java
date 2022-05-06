@@ -42,9 +42,7 @@ public class FeedbackController {
 
     @PostMapping
     public ResponseEntity<Response<FeedbackDTO>> add(@RequestBody FeedbackDTO feedback) {
-        log.info("/api/feedbacks: POST request with parameters: rating: {}, text: {}", feedback.getRating(), feedback.getText());
         var response = feedbackService.add(feedback);
-        log.info("/api/feedbacks: Feedback added, id={}, Response status: {}", response.getId(), HttpStatus.CREATED);
         return new ResponseEntity<>(
                 new Response<>(response),
                 HttpStatus.CREATED

@@ -4,10 +4,11 @@ import {Observable} from "rxjs";
 import {PaginatedResponseModel} from "../dto/paginated-response.model";
 import {ResponseModel} from "../dto/response.model";
 import {FeedbackModel} from "../dto/feedback.model";
+import {environment} from "../../environments/environment";
 
 @Injectable()
 export class FeedbackService {
-  private url = 'http://localhost:8081/api/feedbacks'
+  private url = environment.api + 'feedbacks';
 
   constructor(private http: HttpClient) {
   }

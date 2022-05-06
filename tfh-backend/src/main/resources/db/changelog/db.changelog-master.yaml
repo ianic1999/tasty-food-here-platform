@@ -222,5 +222,65 @@ databaseChangeLog:
                   name: full_name
                   type: varchar(256)
 
+  - changeSet:
+      id: update_users_add_device_id
+      author: ianic
+      changes:
+        - addColumn:
+            tableName: users
+            columns:
+              - column:
+                  name: device_id
+                  type: varchar(1024)
+
+  - changeSet:
+      id: update_booking_add_status
+      author: ianic
+      changes:
+        - addColumn:
+            tableName: bookings
+            columns:
+              - column:
+                  name: status
+                  type: varchar(256)
+
+  - changeSet:
+      id: update_booking_add_client_details
+      author: ianic
+      changes:
+        - addColumn:
+            tableName: bookings
+            columns:
+              - column:
+                  name: phone
+                  type: varchar(256)
+              - column:
+                  name: client_full_name
+                  type: varchar(256)
+              - column:
+                  name: confirmed
+                  type: boolean
+
+  - changeSet:
+      id: update_booking_add_reference_id
+      author: ianic
+      changes:
+        - addColumn:
+            tableName: bookings
+            columns:
+              - column:
+                  name: reference_id
+                  type: varchar(256)
+
+  - changeSet:
+      id: update_feedback_add_booking_id
+      author: ianic
+      changes:
+        - addColumn:
+            tableName: feedback
+            columns:
+              - column:
+                  name: booking_id
+                  type: varchar(256)
 
 

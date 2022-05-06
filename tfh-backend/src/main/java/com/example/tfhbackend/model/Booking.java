@@ -1,11 +1,15 @@
 package com.example.tfhbackend.model;
 
+import com.example.tfhbackend.model.enums.BookingStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -23,10 +27,24 @@ public class Booking {
     @GenericGenerator(name = "incrementDomain", strategy = "increment")
     private Long id;
 
+    @NotEmpty(message = "Reference ID should be provided")
+    @Getter
+    private String referenceId;
+
     @NotNull(message = "Booking time should be provided")
     private LocalDateTime time;
 
+    @Getter
+    @Setter
+    private Boolean confirmed;
+
     private Integer duration;
+
+    @NotEmpty(message = "Client phone should be provided")
+    private String phone;
+
+    @NotEmpty(message = "Client full name should be provided")
+    private String clientFullName;
 
     @NotNull(message = "Booking table should be provided")
     @ManyToOne(fetch = FetchType.LAZY)
@@ -35,6 +53,12 @@ public class Booking {
     @Builder.Default
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "booking", cascade = CascadeType.ALL)
     private List<Order> orders = new ArrayList<>();
+
+    @Getter
+    @Setter
+    @Builder.Default
+    @Enumerated(EnumType.STRING)
+    private BookingStatus status = BookingStatus.UPCOMING;
 
     @Override
     public boolean equals(Object o) {

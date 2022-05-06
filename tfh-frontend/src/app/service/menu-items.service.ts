@@ -5,6 +5,7 @@ import {PaginatedResponseModel} from "../dto/paginated-response.model";
 import {MenuItemModel} from "../model/menu-item-model";
 import {ResponseModel} from "../dto/response.model";
 import {FoodCategoryModel} from "../dto/food-category.model";
+import {MenuItemPerCategoryDto} from "../dto/menu-item-per-category-dto";
 
 @Injectable()
 export class MenuItemsService {
@@ -17,6 +18,10 @@ export class MenuItemsService {
     return this.http.get<PaginatedResponseModel<MenuItemModel>>(this.url, {
       params: new HttpParams().set('page', page).set('perPage', perPage)
     })
+  }
+
+  getAllPerCategories(): Observable<ResponseModel<MenuItemPerCategoryDto[]>> {
+    return this.http.get<ResponseModel<MenuItemPerCategoryDto[]>>(this.url + "/all")
   }
 
   getById(id: number) {

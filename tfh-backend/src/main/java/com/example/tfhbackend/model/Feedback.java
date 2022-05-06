@@ -2,7 +2,9 @@ package com.example.tfhbackend.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -29,7 +31,11 @@ public class Feedback {
     @Max(value = 5, message = "Rating value is in range 1-5")
     private Integer rating;
 
-    @NotEmpty(message = "Name should be provided")
+    @NotEmpty(message = "Booking ID should be provided")
+    @Getter
+    @Setter
+    private String bookingId;
+
     private String fullName;
 
     public Long getId() {

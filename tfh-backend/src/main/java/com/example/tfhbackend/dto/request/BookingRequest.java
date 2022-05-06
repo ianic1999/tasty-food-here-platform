@@ -13,7 +13,10 @@ import java.time.LocalDateTime;
 @Data
 public class BookingRequest {
     private Long id;
-    private LocalDateTime time;
+    private String phone;
+    private String fullName;
+    private String date;
+    private String time;
     private Integer duration;
     private Long tableId;
 }

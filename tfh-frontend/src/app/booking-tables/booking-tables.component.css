@@ -1,0 +1,57 @@
+.tables-container {
+  width: 100%;
+  padding-left: 30px;
+  padding-right: 30px;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.block {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.table {
+  width: 130px;
+  height: 100px;
+  margin-left: 20px;
+  margin-right: 20px;
+  background: whitesmoke;
+  text-align: center;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.table-data {
+  margin-top: auto;
+  margin-bottom: auto;
+  vertical-align: middle;
+  padding-top: 25px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.selected {
+  border: 7px solid purple;
+}
+
+button {
+  color: white;
+  font-size: 20px;
+  border: 1px solid white;
+}
+
+.client-data {
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  max-width: 250px;
+}

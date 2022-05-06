@@ -1,0 +1,42 @@
+img {
+  width: 250px;
+}
+
+.item {
+  width: 250px;
+  height: 230px;
+  padding: 5px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.item-category {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid purple;
+  padding: 20px;
+  position: relative;
+}
+
+.page-border {
+  margin: 35px;
+}
+
+.category-container {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.item-category {
+  margin-bottom: 30px;
+}
+
+.menu-image {
+  width: 100%;
+}
+
+.category-group {
+  position: relative;
+}
+
+

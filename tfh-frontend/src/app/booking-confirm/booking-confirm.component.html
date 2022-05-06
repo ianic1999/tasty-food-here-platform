@@ -1,0 +1,9 @@
+<div class="confirm-dialog">
+  <span>We've sent a code to {{phone}}</span>
+  <span>Please enter it here to confirm your booking</span>
+  <mat-form-field appearance="fill" class="input">
+    <mat-label>Code</mat-label>
+    <input matInput placeholder="Ex. 12345678" [(ngModel)]="code">
+  </mat-form-field>
+  <button mat-button (click)="confirm()">Confirm</button>
+</div>

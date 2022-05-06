@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1028736642064",
+    "project_id": "tfh-project-f9285",
+    "storage_bucket": "tfh-project-f9285.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1028736642064:android:42a231b0f656f13be62e95",
+        "android_client_info": {
+          "package_name": "com.example.tfhmobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1028736642064-udompcb4n6bs3oc5kd95sm44gphs7t17.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3e5k_S4p0oL7yaK6q_ZPLVF77BZMK56k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1028736642064-udompcb4n6bs3oc5kd95sm44gphs7t17.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

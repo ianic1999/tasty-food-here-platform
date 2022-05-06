@@ -65,6 +65,7 @@ public class AuthenticationServiceImplTest {
         authenticationRequest = new AuthenticationRequest(
                 "+37369999999",
                 "password",
+                null,
                 false
         );
         user = UserFixture.user();

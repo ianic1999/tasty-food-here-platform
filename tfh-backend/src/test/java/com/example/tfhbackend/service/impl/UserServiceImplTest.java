@@ -69,6 +69,7 @@ public class UserServiceImplTest {
                 "+37369999999",
                 "user@gmail.com",
                 "WAITER",
+                null,
                 true
         );
         userRequest.setId(1L);

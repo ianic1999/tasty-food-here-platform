@@ -65,6 +65,7 @@ public class AuthenticationControllerTest {
         authenticationRequest = new AuthenticationRequest(
                 "+37369999999",
                 "password",
+                null,
                 false
         );
         jwt = new JwtDTO(

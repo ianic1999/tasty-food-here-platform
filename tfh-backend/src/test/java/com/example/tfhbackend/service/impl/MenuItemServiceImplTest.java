@@ -7,7 +7,7 @@ import com.example.tfhbackend.model.enums.FoodCategory;
 import com.example.tfhbackend.model.exception.EntityNotFoundException;
 import com.example.tfhbackend.model.fixture.MenuItemFixture;
 import com.example.tfhbackend.repository.MenuItemRepository;
-import com.example.tfhbackend.util.ImageHandler;
+import com.example.tfhbackend.service.S3Service;
 import com.example.tfhbackend.util.ReflectionsUtil;
 import org.junit.Before;
 import org.junit.Test;
@@ -36,7 +36,7 @@ public class MenuItemServiceImplTest {
     @Mock
     private MenuItemRepository menuItemRepository;
     @Mock
-    private ImageHandler imageHandler;
+    private S3Service s3Service;
     @Mock
     private Mapper<MenuItem, MenuItemDTO> mapper;
     @Mock
@@ -60,7 +60,7 @@ public class MenuItemServiceImplTest {
     public void setup() throws IOException {
         menuItemService = new MenuItemServiceImpl(
                 menuItemRepository,
-                imageHandler,
+                s3Service,
                 mapper
         );
 
@@ -135,7 +135,7 @@ public class MenuItemServiceImplTest {
                 file
         );
 
-        verify(imageHandler).save(file, "menu", "2.png");
+        verify(s3Service).save(file, "menu", "2.png");
     }
 
     @Test
@@ -164,7 +164,7 @@ public class MenuItemServiceImplTest {
                 file
         );
 
-        verify(imageHandler).delete("pizza.png");
+        verify(s3Service).delete("pizza.png");
     }
 
     @Test
@@ -187,7 +187,7 @@ public class MenuItemServiceImplTest {
                 file
         );
 
-        verify(imageHandler).save(file, "menu", "2.png");
+        verify(s3Service).save(file, "menu", "2.png");
     }
 
     @Test
@@ -209,7 +209,7 @@ public class MenuItemServiceImplTest {
     public void remove_whenInvoked_removesImage() throws IOException {
         menuItemService.remove(1L);
 
-        verify(imageHandler).delete(pizza.getImage());
+        verify(s3Service).delete(pizza.getImage());
     }
 
     @Test

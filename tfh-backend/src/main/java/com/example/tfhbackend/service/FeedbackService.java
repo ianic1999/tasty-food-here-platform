@@ -7,6 +7,5 @@ public interface FeedbackService {
     Page<FeedbackDTO> get(int page, int perPage);
     FeedbackDTO getById(Long id);
     FeedbackDTO add(FeedbackDTO feedback);
-    FeedbackDTO update(FeedbackDTO feedback);
     void remove(Long id);
 }

@@ -3,7 +3,9 @@ package com.example.tfhbackend.model;
 import com.example.tfhbackend.model.enums.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -51,6 +53,10 @@ public class User implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private UserRole role;
+
+    @Getter
+    @Setter
+    private String deviceId;
 
     @Builder.Default
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "waiter")

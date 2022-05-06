@@ -12,5 +12,6 @@ import lombok.NoArgsConstructor;
 public class AuthenticationRequest {
     private String phone;
     private String password;
+    private String deviceId;
     private boolean remember;
 }
