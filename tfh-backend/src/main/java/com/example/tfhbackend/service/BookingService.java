@@ -12,4 +12,5 @@ public interface BookingService {
     BookingDTO update(BookingRequest request);
     void confirm(BookingConfirmationRequest confirmationRequest);
     void remove(Long id);
+    BookingDTO close(Long id);
 }

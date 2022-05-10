@@ -55,7 +55,8 @@ public class TableServiceImplTest {
         dto = new TableDTO(
                 1L,
                 10001,
-                10
+                10,
+                1L
         );
 
         when(mapper.map(table))

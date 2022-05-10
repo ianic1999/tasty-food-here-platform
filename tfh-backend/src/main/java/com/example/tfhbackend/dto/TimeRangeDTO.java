@@ -5,13 +5,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Data
-public class TableDTO {
-    private Long id;
-    private Integer ordinalNumber;
-    private Integer nrOfSpots;
-    private Long currentBookingId;
+public class TimeRangeDTO {
+    private LocalDate date;
+    private LocalTime start;
+    private LocalTime end;
 }

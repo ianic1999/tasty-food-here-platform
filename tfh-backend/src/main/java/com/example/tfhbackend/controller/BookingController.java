@@ -74,6 +74,12 @@ public class BookingController {
         return ResponseEntity.ok().build();
     }
 
+    @PostMapping("/{id}/close")
+    public ResponseEntity<Void> close(@PathVariable Long id) {
+        bookingService.close(id);
+        return ResponseEntity.noContent().build();
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> remove(@PathVariable Long id) {
         log.info("/api/bookings/{id}: DELETE request for removing booking with id: {}", id);

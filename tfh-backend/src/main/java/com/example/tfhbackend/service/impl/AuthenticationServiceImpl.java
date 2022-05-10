@@ -71,5 +71,4 @@ class AuthenticationServiceImpl implements AuthenticationService {
 
         return new JwtDTO(accessToken, refreshToken);
     }
-
 }

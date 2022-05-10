@@ -18,8 +18,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -52,10 +52,12 @@ class OrderServiceImpl implements OrderService {
     @Transactional
     public OrderDTO add(OrderRequest request) {
         Booking booking = findBookingById(request.getBookingId());
-        List<MenuItem> menuItems = request.getMenuItemIds()
-                .stream()
-                .map(this::findMenuItemById)
-                .collect(Collectors.toList());
+        List<MenuItem> menuItems = new ArrayList<>();
+        for (var item : request.getItems()) {
+            MenuItem menuItem = findMenuItemById(item.getMenuItemId());
+            for (int i = 1; i <= item.getQuantity(); i++)
+                menuItems.add(menuItem);
+        }
         Order order = new Order();
         order = orderRepository.save(order);
         booking.addOrder(order);
@@ -68,23 +70,23 @@ class OrderServiceImpl implements OrderService {
     public void remove(Long id) {
         Order order = findOrderById(id);
         order.getItems()
-                .forEach(order::removeMenuItem);
+             .forEach(order::removeMenuItem);
         order.removeBooking();
         orderRepository.deleteById(id);
     }
 
     private Order findOrderById(Long id) {
         return orderRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Order with id " + id + " not found"));
+                              .orElseThrow(() -> new EntityNotFoundException("Order with id " + id + " not found"));
     }
 
     private MenuItem findMenuItemById(Long id) {
         return menuItemRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Menu item with id " + id + " not found"));
+                                 .orElseThrow(() -> new EntityNotFoundException("Menu item with id " + id + " not found"));
     }
 
     private Booking findBookingById(Long id) {
         return bookingRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Booking with id " + id + " not found"));
+                                .orElseThrow(() -> new EntityNotFoundException("Booking with id " + id + " not found"));
     }
 }

@@ -1,10 +1,8 @@
 package com.example.tfhbackend.mapper;
 
-import com.example.tfhbackend.dto.BookingDTO;
 import com.example.tfhbackend.dto.MenuItemDTO;
 import com.example.tfhbackend.dto.MenuItemWithCountDTO;
 import com.example.tfhbackend.dto.OrderDTO;
-import com.example.tfhbackend.model.Booking;
 import com.example.tfhbackend.model.MenuItem;
 import com.example.tfhbackend.model.Order;
 import lombok.RequiredArgsConstructor;
@@ -21,19 +19,19 @@ class OrderDtoMapper implements Mapper<Order, OrderDTO> {
     @Override
     public OrderDTO map(Order entity) {
         return OrderDTO.builder()
-                .id(entity.getId())
-                .bookingId(entity.getBooking().getId())
-                .items(getItemsWithCount(entity.getItems()))
-                .build();
+                       .id(entity.getId())
+                       .bookingId(entity.getBooking().getId())
+                       .items(getItemsWithCount(entity.getItems()))
+                       .build();
     }
 
     private List<MenuItemWithCountDTO> getItemsWithCount(List<MenuItem> items) {
         return items.stream()
-                .collect(Collectors.groupingBy(MenuItem::getId))
-                .values()
-                .stream()
-                .map(this::getItemWithCount)
-                .collect(Collectors.toList());
+                    .collect(Collectors.groupingBy(MenuItem::getId))
+                    .values()
+                    .stream()
+                    .map(this::getItemWithCount)
+                    .collect(Collectors.toList());
     }
 
     private MenuItemWithCountDTO getItemWithCount(List<MenuItem> items) {

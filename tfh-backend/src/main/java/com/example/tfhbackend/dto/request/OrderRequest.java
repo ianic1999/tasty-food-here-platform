@@ -1,5 +1,6 @@
 package com.example.tfhbackend.dto.request;
 
+import com.example.tfhbackend.dto.MenuItemWithQuantityDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,5 +15,5 @@ import java.util.List;
 public class OrderRequest {
     private Long id;
     private Long bookingId;
-    private List<Long> menuItemIds;
+    private List<MenuItemWithQuantityDTO> items;
 }

@@ -5,14 +5,16 @@ public enum FoodCategory {
     HOT("Hot", 3),
     SOUP("Soups", 2),
     BREAKFAST("Breakfast", 1),
-    DESSERT("Desserts", 6),
+    DESSERT("Desserts", 8),
     SALAD("Salads", 4),
     FAST_FOOD("Fast Food", 5),
-    BEVERAGE("Beverage", 7),
-    HOT_DRINKS("Hot drinks", 8);
+    BEVERAGE("Beverage", 9),
+    HOT_DRINKS("Hot drinks", 10),
+    PIE("Pies", 7),
+    SNACKS("Snacks", 6);
 
-    private String name;
-    private int order;
+    private final String name;
+    private final int order;
 
     FoodCategory(String name,
                  int order) {

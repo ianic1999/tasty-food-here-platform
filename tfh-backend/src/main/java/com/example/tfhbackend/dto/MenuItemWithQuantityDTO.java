@@ -9,9 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Data
-public class TableDTO {
-    private Long id;
-    private Integer ordinalNumber;
-    private Integer nrOfSpots;
-    private Long currentBookingId;
+public class MenuItemWithQuantityDTO {
+    private Long menuItemId;
+    private int quantity;
 }

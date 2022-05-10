@@ -11,7 +11,12 @@ import java.util.List;
 import java.util.Optional;
 
 public interface TableRepository extends JpaRepository<Table, Long> {
-    List<Table> findByWaiter_Id(Long waiterId);
+    @Query("select t from Table t " +
+            "join t.waiter w " +
+            "join t.bookings b " +
+            "where w.id = :waiterId " +
+            "and b.status = 'ACTIVE'")
+    List<Table> findActiveForWaiter(Long waiterId);
 
     Optional<Table> findByOrdinalNumber(int ordinalNumber);
 
@@ -28,14 +33,29 @@ public interface TableRepository extends JpaRepository<Table, Long> {
             "      (" +
             "          select table_id " +
             "          from bookings b " +
-            "          where ((b.time <= :startTime and b.time + (b.duration * interval '1 minute') >= :endTime) " +
-            "             or (b.time >= :startTime and b.time + (b.duration * interval '1 minute') <= :endTime) " +
-            "             or (b.time < :startTime and b.time + (b.duration * interval '1 minute') > :startTime) " +
-            "             or (b.time > :startTime and b.time < :endTime)) " +
+            "   where ((b.time <= :startTime and b.time + (b.duration * interval '1 minute') > :startTime) " +
+            "            or (b.time < :endTime and b.time + (b.duration * interval '1 minute') >= :endTime) " +
+            "            or (:startTime <= b.time and :endTime > b.time) " +
+            "            or (:startTime < b.time + (b.duration * interval '1 minute') and :endTime >= b.time + (b.duration * interval '1 minute')))" +
             "           and b.confirmed = true " +
+            "           and b.status <> 'CLOSED'" +
             "      )")
     List<Table> getFreeTablesForTimeRange(@Param("startTime") LocalDateTime startTime,
                                           @Param("endTime") LocalDateTime endTime);
 
-
+    @Query(nativeQuery = true, value = "select case when (count(*) = 0) then false else true end " +
+            "from tables " +
+            "where id not in " +
+            "      (" +
+            "          select table_id " +
+            "          from bookings b " +
+            "   where ((b.time <= :startTime and b.time + (b.duration * interval '1 minute') > :startTime) " +
+            "            or (b.time < :endTime and b.time + (b.duration * interval '1 minute') >= :endTime) " +
+            "            or (:startTime <= b.time and :endTime > b.time) " +
+            "            or (:startTime < b.time + (b.duration * interval '1 minute') and :endTime >= b.time + (b.duration * interval '1 minute')))" +
+            "           and b.confirmed = true " +
+            "           and b.status <> 'CLOSED'" +
+            "      )")
+    boolean isTimeAvailable(@Param("startTime") LocalDateTime start,
+                            @Param("endTime") LocalDateTime end);
 }

@@ -2,7 +2,9 @@ package com.example.tfhbackend.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -32,6 +34,8 @@ public class Table {
     private List<Booking> bookings = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @Getter
+    @Setter
     private User waiter;
 
     public Long getId() {

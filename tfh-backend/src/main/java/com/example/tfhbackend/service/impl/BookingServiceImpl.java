@@ -6,6 +6,8 @@ import com.example.tfhbackend.dto.request.BookingRequest;
 import com.example.tfhbackend.mapper.Mapper;
 import com.example.tfhbackend.model.Booking;
 import com.example.tfhbackend.model.Table;
+import com.example.tfhbackend.model.User;
+import com.example.tfhbackend.model.enums.BookingStatus;
 import com.example.tfhbackend.model.exception.CustomRuntimeException;
 import com.example.tfhbackend.model.exception.EntityNotFoundException;
 import com.example.tfhbackend.repository.BookingRepository;
@@ -13,6 +15,7 @@ import com.example.tfhbackend.repository.TableRepository;
 import com.example.tfhbackend.service.BookingService;
 import com.example.tfhbackend.service.SmsService;
 import com.example.tfhbackend.util.BookingIdGenerator;
+import com.example.tfhbackend.validator.BookingTimeValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,6 +29,11 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -37,6 +45,7 @@ class BookingServiceImpl implements BookingService {
     private final TableRepository tableRepository;
     private final BookingIdGenerator idGenerator;
     private final SmsService smsService;
+    private final BookingTimeValidator bookingTimeValidator;
     private final Mapper<Booking, BookingDTO> mapper;
 
     @Override
@@ -59,6 +68,8 @@ class BookingServiceImpl implements BookingService {
         String referenceId = idGenerator.generate();
         LocalDateTime time = LocalDate.parse(request.getDate(), DateTimeFormatter.ofPattern(DATE_FORMAT))
                 .atTime(LocalTime.parse(request.getTime(), DateTimeFormatter.ofPattern(TIME_FORMAT)));
+        bookingTimeValidator.validate(time, time.plusMinutes(request.getDuration()));
+
         Booking booking = Booking.builder()
                 .phone(request.getPhone())
                 .clientFullName(request.getFullName())
@@ -107,6 +118,22 @@ class BookingServiceImpl implements BookingService {
         Table table = booking.getTable();
         table.removeBooking(booking);
         bookingRepository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public BookingDTO close(Long id) {
+        Booking booking = findBookingById(id);
+        booking.setStatus(BookingStatus.CLOSED);
+        booking.getTable().setWaiter(null);
+        setWaiterForUpcomingBooking(booking);
+        return mapper.map(booking);
+    }
+
+    private void setWaiterForUpcomingBooking(Booking booking) {
+        Table table = booking.getTable();
+        bookingRepository.findActiveForTable(table.getId())
+                .ifPresent(b -> table.setWaiter(b.getWaiter()));
     }
 
     private Booking findBookingById(Long id) {

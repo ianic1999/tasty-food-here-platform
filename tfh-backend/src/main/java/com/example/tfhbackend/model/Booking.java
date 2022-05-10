@@ -60,6 +60,11 @@ public class Booking {
     @Enumerated(EnumType.STRING)
     private BookingStatus status = BookingStatus.UPCOMING;
 
+    @ManyToOne
+    @Getter
+    @Setter
+    private User waiter;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

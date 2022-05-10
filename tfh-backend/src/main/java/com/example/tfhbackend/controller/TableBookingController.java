@@ -1,6 +1,7 @@
 package com.example.tfhbackend.controller;
 
 import com.example.tfhbackend.dto.TableDTO;
+import com.example.tfhbackend.dto.TimeRangeDTO;
 import com.example.tfhbackend.dto.request.TableBookingRequest;
 import com.example.tfhbackend.dto.response.Response;
 import com.example.tfhbackend.service.TableBookingService;
@@ -31,6 +32,16 @@ public class TableBookingController {
         TableBookingRequest request = new TableBookingRequest(date, time, duration);
         return ResponseEntity.ok(
                 new Response<>(tableBookingService.getFreeTables(request))
+        );
+    }
+
+    @GetMapping("/available")
+    public ResponseEntity<Response<TimeRangeDTO>> getAvailableTables(@RequestParam String date,
+                                                                    @RequestParam String time,
+                                                                    @RequestParam int duration) {
+        TableBookingRequest request = new TableBookingRequest(date, time, duration);
+        return ResponseEntity.ok(
+                new Response<>(tableBookingService.getFirstAvailableTable(request))
         );
     }
 }

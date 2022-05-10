@@ -283,4 +283,18 @@ databaseChangeLog:
                   name: booking_id
                   type: varchar(256)
 
+  - changeSet:
+      id: update_booking_add_waiter
+      author: ianic
+      changes:
+        - addColumn:
+            tableName: bookings
+            columns:
+              - column:
+                  name: waiter_id
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_booking_waiter
+                    references: users(id)
+
 

@@ -13,6 +13,7 @@ import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.springframework.data.domain.*;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -264,6 +265,16 @@ public class UserServiceTest {
         @Override
         public long countAllByRole(UserRole role) {
             return 0;
+        }
+
+        @Override
+        public List<User> getFreeWaitersForTimeRange(LocalDateTime start, LocalDateTime end) {
+            return null;
+        }
+
+        @Override
+        public List<User> getAllWaitersForTimeRage(LocalDateTime start, LocalDateTime end) {
+            return null;
         }
 
         @Override

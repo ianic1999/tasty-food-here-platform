@@ -33,7 +33,7 @@ class TableServiceImpl implements TableService {
     @Override
     @Transactional(readOnly = true)
     public List<TableDTO> getForWaiter(UserDTO currentUser) {
-        return mapper.mapList(tableRepository.findByWaiter_Id(currentUser.getId()));
+        return mapper.mapList(tableRepository.findActiveForWaiter(currentUser.getId()));
     }
 
     @Override
