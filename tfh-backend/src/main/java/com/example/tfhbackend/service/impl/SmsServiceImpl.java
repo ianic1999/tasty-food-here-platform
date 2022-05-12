@@ -27,7 +27,7 @@ class SmsServiceImpl implements SmsService {
             Twilio.init(accountSid, authToken);
             Message.creator(
                     new PhoneNumber(phone),
-                    new PhoneNumber("+19378218537"),
+                    new PhoneNumber("TFH"),
                     String.format(confirmationMessage, fullName, referenceId)
             )
                    .create();

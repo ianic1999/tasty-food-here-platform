@@ -65,7 +65,6 @@ class BookingServiceImpl implements BookingService {
     @Transactional
     public BookingDTO add(BookingRequest request) {
         Table table = findTableById(request.getTableId());
-        String referenceId = idGenerator.generate();
         LocalDateTime time = LocalDate.parse(request.getDate(), DateTimeFormatter.ofPattern(DATE_FORMAT))
                 .atTime(LocalTime.parse(request.getTime(), DateTimeFormatter.ofPattern(TIME_FORMAT)));
         bookingTimeValidator.validate(time, time.plusMinutes(request.getDuration()));
@@ -76,10 +75,11 @@ class BookingServiceImpl implements BookingService {
                 .time(time)
                 .duration(request.getDuration())
                 .confirmed(false)
-                .referenceId(referenceId)
                 .orders(Collections.emptyList())
                 .build();
         booking = bookingRepository.save(booking);
+        String referenceId = idGenerator.generate(booking.getId());
+        booking.setReferenceId(referenceId);
         table.addBooking(booking);
         smsService.sendConfirmationSms(referenceId, request.getPhone(), request.getFullName());
         return mapper.map(booking);
@@ -107,7 +107,7 @@ class BookingServiceImpl implements BookingService {
     public void confirm(BookingConfirmationRequest confirmationRequest) {
         Booking booking = findBookingById(confirmationRequest.getBookingId());
         if (!booking.getReferenceId().equals(confirmationRequest.getReferenceId()))
-            throw new CustomRuntimeException("Reference Id is invalid. Please try again");
+            throw new CustomRuntimeException("Code is invalid. Please try again");
         booking.setConfirmed(true);
     }
 

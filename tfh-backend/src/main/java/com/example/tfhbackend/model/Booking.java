@@ -29,6 +29,7 @@ public class Booking {
 
     @NotEmpty(message = "Reference ID should be provided")
     @Getter
+    @Setter
     private String referenceId;
 
     @NotNull(message = "Booking time should be provided")
