@@ -54,6 +54,9 @@ import { BookingTablesComponent } from './booking-tables/booking-tables.componen
 import { BookingConfirmComponent } from './booking-confirm/booking-confirm.component';
 import {BookingService} from "./service/booking.service";
 import {NgxStarRatingModule} from "ngx-star-rating";
+import { AddOrderDialogComponent } from './add-order-dialog/add-order-dialog.component';
+import {OrderService} from "./service/order.service";
+import {MatBadgeModule} from "@angular/material/badge";
 
 @NgModule({
   declarations: [
@@ -76,7 +79,8 @@ import {NgxStarRatingModule} from "ngx-star-rating";
     ClientFeedbackComponent,
     BookingComponent,
     BookingTablesComponent,
-    BookingConfirmComponent
+    BookingConfirmComponent,
+    AddOrderDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -100,9 +104,10 @@ import {NgxStarRatingModule} from "ngx-star-rating";
     MatTabsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    NgxStarRatingModule
+    NgxStarRatingModule,
+    MatBadgeModule
   ],
-  providers: [DatePipe, MenuItemsService, TablesService, FeedbackService, BookingService,
+  providers: [DatePipe, MenuItemsService, TablesService, FeedbackService, BookingService, OrderService,
     UsersService, AuthenticationService, ActuatorService, StatisticsService, TableBookingService,
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}

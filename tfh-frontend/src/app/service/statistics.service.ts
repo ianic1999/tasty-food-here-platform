@@ -7,11 +7,12 @@ import {ItemsPerCategoryStatisticsModel} from "../dto/items-per-category-statist
 import {BookingsPerDayModel} from "../dto/bookings-per-day.model";
 import {BookingsPerWeekModel} from "../dto/bookings-per-week.model";
 import {BookingsPerMonthModel} from "../dto/bookings-per-month.model";
+import {environment} from "../../environments/environment";
 
 
 @Injectable()
 export class StatisticsService {
-  private url = 'http://104.248.205.251:8081/api/statistics';
+  private url = environment.api + 'statistics';
 
   constructor(private http: HttpClient) {
   }

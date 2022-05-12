@@ -10,6 +10,14 @@ button {
   color: white;
   font-size: 20px;
   border: 1px solid white;
+  background: #7b1fa2;
+  margin-top: 20px;
+}
+
+.mat-input {
+  background: #7b1fa2;
+  border-radius: 10px;
+  color: white;
 }
 
 .input {

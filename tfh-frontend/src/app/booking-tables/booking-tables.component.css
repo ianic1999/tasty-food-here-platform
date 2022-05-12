@@ -19,10 +19,11 @@
   height: 100px;
   margin-left: 20px;
   margin-right: 20px;
-  background: whitesmoke;
+  background: #7b1fa2;
   text-align: center;
   border-radius: 20px;
   cursor: pointer;
+  color: white;
 }
 
 .table-data {
@@ -38,13 +39,7 @@
 }
 
 .selected {
-  border: 7px solid purple;
-}
-
-button {
-  color: white;
-  font-size: 20px;
-  border: 1px solid white;
+  border: 10px solid whitesmoke;
 }
 
 .client-data {
@@ -55,3 +50,31 @@ button {
   flex-direction: column;
   max-width: 250px;
 }
+
+.available-tables {
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+}
+
+.bold {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+button {
+  color: white;
+  font-size: 20px;
+  border: 1px solid white;
+  background: #7b1fa2;
+  margin-top: 20px;
+}
+
+.mat-input {
+  background: #7b1fa2;
+  border-radius: 15px;
+  color: white;
+  margin-top: 7px;
+  margin-bottom: 7px;
+}
+

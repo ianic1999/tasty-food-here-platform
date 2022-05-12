@@ -4,10 +4,11 @@ import {Observable} from "rxjs";
 import {PaginatedResponseModel} from "../dto/paginated-response.model";
 import {ResponseModel} from "../dto/response.model";
 import {TableModel} from "../dto/table.model";
+import {environment} from "../../environments/environment";
 
 @Injectable()
 export class TablesService {
-  private url = 'http://104.248.205.251:8081/api/tables'
+  private url = environment.api + 'tables'
 
   constructor(private http: HttpClient) {
   }

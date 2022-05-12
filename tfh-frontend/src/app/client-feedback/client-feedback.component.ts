@@ -35,4 +35,8 @@ export class ClientFeedbackComponent implements OnInit {
       })
   }
 
+  canSubmit() {
+    return this.bookingId != '' && this.comments != '';
+  }
+
 }

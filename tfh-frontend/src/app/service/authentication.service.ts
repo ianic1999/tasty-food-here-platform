@@ -3,11 +3,12 @@ import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, map} from "rxjs";
 import {ResponseModel} from "../dto/response.model";
 import {JwtModel} from "../dto/jwt.model";
+import {environment} from "../../environments/environment";
 
 @Injectable()
 export class AuthenticationService {
 
-  private url = 'http://104.248.205.251:8081/api/auth/login';
+  private url = environment.api + 'auth/login';
 
   constructor(private http: HttpClient) {
   }

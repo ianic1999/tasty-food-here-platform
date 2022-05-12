@@ -19,4 +19,10 @@ export class TableBookingService {
       params: new HttpParams().set("date", request.date).set("time", request.time).set("duration", request.duration)
     });
   }
+
+  getFirstAvailable(request: TableBookingModel): Observable<ResponseModel<any>> {
+    return this.http.get<ResponseModel<any>>(this.url + "/available", {
+      params: new HttpParams().set("date", request.date).set("time", request.time).set("duration", request.duration)
+    });
+  }
 }

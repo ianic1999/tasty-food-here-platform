@@ -32,4 +32,8 @@ export class MenuComponent implements OnInit {
       })
   }
 
+  isNameTooLong(name: string) {
+    return name.length >= 24;
+  }
+
 }

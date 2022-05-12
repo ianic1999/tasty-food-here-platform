@@ -5,20 +5,20 @@
     </div>
 
     <div class="time-container">
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="fill" class="mat-input">
         <mat-label>Choose date</mat-label>
         <input matInput [matDatepicker]="picker" (dateChange)="datePick($event)">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
 
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="fill" class="mat-input">
         <mat-label>Choose time</mat-label>
         <input matInput type="time" (change)="timePick($event)"/>
       </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Enter duration</mat-label>
+      <mat-form-field appearance="fill" class="mat-input">
+        <mat-label>Enter duration (minutes)</mat-label>
         <input matInput type="number" (change)="durationPick($event)">
       </mat-form-field>
       <br>

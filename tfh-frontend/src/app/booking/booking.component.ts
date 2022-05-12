@@ -5,8 +5,9 @@ import {TableBookingService} from "../service/table-booking.service";
 import {TableBookingModel} from "../dto/table-booking.model";
 import {TableModel} from "../dto/table.model";
 import {DatePipe} from "@angular/common";
-import {Router} from "@angular/router";
 import {BookingTablesComponent} from "../booking-tables/booking-tables.component";
+import {MatDialog} from "@angular/material/dialog";
+import {AddOrderDialogComponent} from "../add-order-dialog/add-order-dialog.component";
 
 @Component({
   selector: 'app-booking',
@@ -21,7 +22,9 @@ export class BookingComponent implements OnInit {
   constructor(private bookingService: TableBookingService,
               private snackBar: MatSnackBar,
               private datePipe: DatePipe,
-              private componentFactoryResolver: ComponentFactoryResolver) { }
+              private componentFactoryResolver: ComponentFactoryResolver,
+              private dialog: MatDialog) {
+  }
 
   date = ''
   time = ''
@@ -32,8 +35,7 @@ export class BookingComponent implements OnInit {
 
   datePick(event: MatDatepickerInputEvent<Date>) {
     let date = event.value
-    this.date = this.datePipe.transform(date,"yyyy/MM/dd")!;
-    console.log(this.date)
+    this.date = this.datePipe.transform(date, "yyyy/MM/dd")!;
   }
 
   timePick(event: any) {
@@ -63,6 +65,13 @@ export class BookingComponent implements OnInit {
     componentRef.instance.date = this.date
     componentRef.instance.time = this.time
     componentRef.instance.duration = this.duration
+
+  }
+
+  showFirstAvailable(range: any) {
+    if (range != null) {
+      this.snackBar.open('No available tables. You can try ' + range.start + '-' + range.end, 'OK', {duration: 4000})
+    }
   }
 
   canSearch() {

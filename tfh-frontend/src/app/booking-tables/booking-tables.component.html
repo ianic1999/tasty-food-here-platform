@@ -1,26 +1,35 @@
-<div *ngIf="tables.length > 0" class="tables-container">
-  <div class="block">
-    <div *ngFor="let table of tables">
-      <div class="table" [ngClass]="table.ordinalNumber == selectedTable ? 'selected' : ''" (click)="select(table.ordinalNumber)">
-        <div class="table-data">
-          <span class="title">Table: {{table.ordinalNumber}}</span>
-          <br>
-          <span class="spots">Nr. spots: {{table.nrOfSpots}}</span>
+<div class="tables-container">
+  <div *ngIf="tables.length > 0">
+    <div class="block">
+      <div *ngFor="let table of tables">
+        <div class="table" [ngClass]="table.ordinalNumber == selectedTable ? 'selected' : ''" (click)="select(table.ordinalNumber)">
+          <div class="table-data">
+            <span class="title">Table: {{table.ordinalNumber}}</span>
+            <br>
+            <span class="spots">Nr. spots: {{table.nrOfSpots}}</span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="client-data">
-    <mat-form-field appearance="fill" class="input">
-      <mat-label>Phone</mat-label>
-      <input matInput placeholder="Ex. +37368809809" [(ngModel)]="phone">
-    </mat-form-field>
-    <mat-form-field appearance="fill" class="input">
-      <mat-label>Your name</mat-label>
-      <input matInput [(ngModel)]="fullName">
-    </mat-form-field>
-  </div>
-  <button mat-button (click)="book()" [disabled]="!canBook()">Book</button>
+    <div class="client-data">
+      <mat-form-field appearance="fill" class="input mat-input">
+        <mat-label>Phone</mat-label>
+        <input matInput placeholder="Ex. +37368809809" [(ngModel)]="phone">
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="input mat-input">
+        <mat-label>Your name</mat-label>
+        <input matInput [(ngModel)]="fullName">
+      </mat-form-field>
+    </div>
+    <button mat-button (click)="book()" [disabled]="!canBook()">Book</button>
 
-  <ng-container #confirm></ng-container>
+    <ng-container #confirm></ng-container>
+  </div>
+
+  <div *ngIf="tables.length == 0">
+    <div *ngIf="availableRange != null" class="available-tables">
+      <span>There are not available tables in this time range</span>
+      <span>You can try <span class="bold">{{availableRange.start}}-{{availableRange.end}}</span>.</span>
+    </div>
+  </div>
 </div>

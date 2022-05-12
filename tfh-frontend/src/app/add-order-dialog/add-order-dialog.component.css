@@ -1,0 +1,165 @@
+.dialog {
+  width: 80vw;
+  height: 80vh;
+  background-color: whitesmoke;
+  margin-top: 55px;
+}
+
+.mat-dialog-container {
+  padding: 0!important;
+}
+
+img {
+  width: 100px;
+}
+
+.item {
+  width: 180px;
+  height: 150px;
+  padding: 5px;
+  text-align: center;
+  margin-bottom: 15px;
+  background: #7b1fa2;
+  position: relative;
+}
+
+h4 {
+  font-size: 10px;
+}
+
+.item-name {
+  text-decoration: underline;
+  font-size: 12px;
+}
+
+.item-name-long {
+  text-decoration: underline;
+  font-size: 11px;
+}
+
+.count-badge {
+  background: black;
+  position: absolute;
+  top: 0;
+  right: 12px;
+}
+
+.item-category {
+  display: flex;
+  flex-wrap: wrap;
+  border: 5px solid #7b1fa2;
+  padding: 20px;
+  position: relative;
+  justify-content: center;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.category-group {
+  text-align: center;
+  position: relative;
+}
+
+.category-title {
+  font-size: 26px;
+  font-weight: bold;
+  background-color: whitesmoke;
+  position: relative;
+  top: 14px;
+  z-index: 10;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.page-border {
+  margin: 35px;
+  padding-bottom: 20px;
+}
+
+.category-container {
+  margin-left: 10px;
+  margin-right: 10px;
+  align-items: center;
+  position: relative;
+}
+
+.item-category {
+  margin-bottom: 30px;
+}
+
+.menu-image {
+  width: 100%;
+}
+
+.category-name {
+  font-size: 26px;
+  font-weight: bold;
+  background-color: whitesmoke;
+  position: relative;
+  top: 14px;
+  z-index: 10;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: black;
+}
+
+.category-group {
+  position: relative;
+}
+
+.button-dec {
+  position: absolute;
+  left: -18px;
+  top: 50px;
+  cursor: pointer;
+}
+
+.button-inc {
+  position: absolute;
+  right: -18px;
+  top: 50px;
+  cursor: pointer;
+}
+
+title {
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+  font-weight: bold;
+  width: 80%;
+  text-align: center;
+  background: #7b1fa2;
+  margin-top: 0;
+  height: 55px;
+  padding-top: 10px;
+  position: fixed;
+  z-index: 200;
+}
+
+.price {
+  color: white;
+  background: #7b1fa2;
+  width: 150px;
+  text-align: center;
+  font-weight: bold;
+  padding: 7px;
+  z-index: 201;
+  position: fixed;
+  left: 13%;
+  top: 6%;
+  font-size: 16px;
+}
+
+.confirm-button {
+  background: #7b1fa2;
+  color: white;
+  font-weight: bold;
+  position: fixed;
+  left: 80%;
+  top: 6%;
+  z-index: 201;
+  font-size: 16px;
+}
+
+

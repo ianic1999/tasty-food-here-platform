@@ -1,0 +1,25 @@
+<title mat-dialog-title>Add an order for you booking</title>
+<div class="price">
+  Price: {{price}} MDL
+</div>
+<button mat-button class="confirm-button" (click)="confirm()">Confirm</button>
+
+<div class="dialog">
+  <div *ngFor="let category of menu">
+    <div class="category-group">
+      <span class="category-name">{{category.category}}</span>
+      <div class="item-category">
+        <div class="category-container" *ngFor="let item of category.items" (mouseenter)="showAdd(item.id)" (mouseleave)="hideAdd()">
+          <mat-card class="item">
+            <span [matBadge]="getCountForItem(item.id)" matBadgeOverlap="false" class="count-badge" matBadgeColor="warn"></span>
+            <button mat-mini-fab [hidden]="item.id !== hoveredItem" (click)="add(item.id, item.price)" class="button-inc">+</button>
+            <button mat-mini-fab [hidden]="item.id !== hoveredItem" (click)="extract(item.id, item.price)" class="button-dec">-</button>
+            <img src="{{item.image}}" alt="image" class="menu-image"/>
+            <span [class]="isNameTooLong(item.name) ? 'item-name-long' : 'item-name'">{{item.name}}</span>
+            <h4>Price: {{item.price}} MDL</h4>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

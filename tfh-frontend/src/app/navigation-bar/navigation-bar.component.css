@@ -6,6 +6,12 @@
   width: 100px;
 }
 
+.top-bar {
+  position: fixed;
+  top: 0;
+  z-index: 20;
+}
+
 a {
   font-size: 20px;
   margin-top: auto;

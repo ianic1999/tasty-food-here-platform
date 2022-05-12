@@ -4,6 +4,8 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {BookingService} from "../service/booking.service";
 import {BookingDtoModel} from "../dto/booking-dto.model";
 import {BookingConfirmComponent} from "../booking-confirm/booking-confirm.component";
+import {TableBookingModel} from "../dto/table-booking.model";
+import {TableBookingService} from "../service/table-booking.service";
 
 @Component({
   selector: 'app-booking-tables',
@@ -17,6 +19,7 @@ export class BookingTablesComponent implements OnInit {
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver,
               private bookingService: BookingService,
+              private tableBookingService: TableBookingService,
               private snackBar: MatSnackBar) { }
   tables: TableModel[] = [];
   selectedTable: number | null = null;
@@ -25,10 +28,23 @@ export class BookingTablesComponent implements OnInit {
   duration: number = 0;
   phone: string = '';
   fullName: string = '';
+  availableRange: any|null = null;
 
   ngOnInit(): void {
     if (this.tables.length == 0) {
-      this.snackBar.open('There are no free tables for this time', 'OK', {duration: 4000})
+      this.handleNoFreeTables()
+    }
+  }
+
+  handleNoFreeTables() {
+    let request = new TableBookingModel(this.date, this.time, this.duration);
+    this.tableBookingService.getFirstAvailable(request).toPromise()
+      .then(response => this.availableRange = response?.data)
+  }
+
+  showFirstAvailable(range: any) {
+    if (range != null) {
+      this.snackBar.open('No available tables. You can try ' + range.start + '-' + range.end, 'OK', {duration: 4000})
     }
   }
 
@@ -48,6 +64,7 @@ export class BookingTablesComponent implements OnInit {
     )
     this.bookingService.book(booking).toPromise()
       .then(response => this.showConfirmation(response?.data!))
+      .catch(err => this.snackBar.open(err, "OK", {duration: 4000}))
   }
 
   showConfirmation(booking: any) {

@@ -4,10 +4,11 @@ import {Observable} from "rxjs";
 import {PaginatedResponseModel} from "../dto/paginated-response.model";
 import {ResponseModel} from "../dto/response.model";
 import {UserModel} from "../dto/user.model";
+import {environment} from "../../environments/environment";
 
 @Injectable()
 export class UsersService {
-  private url = 'http://localhost:8081/api/users'
+  private url = environment.api + 'users'
 
   constructor(private http: HttpClient) {
   }

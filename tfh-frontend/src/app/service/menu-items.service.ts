@@ -6,10 +6,11 @@ import {MenuItemModel} from "../model/menu-item-model";
 import {ResponseModel} from "../dto/response.model";
 import {FoodCategoryModel} from "../dto/food-category.model";
 import {MenuItemPerCategoryDto} from "../dto/menu-item-per-category-dto";
+import {environment} from "../../environments/environment";
 
 @Injectable()
 export class MenuItemsService {
-  public url = 'http://localhost:8081/api/menu_items'
+  public url = environment.api + 'menu_items'
 
   constructor(public http: HttpClient) {
   }

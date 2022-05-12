@@ -2,10 +2,11 @@ import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {MetricModel} from "../dto/metric.model";
 import {HttpClient} from "@angular/common/http";
+import {environment} from "../../environments/environment";
 
 @Injectable()
 export class ActuatorService {
-  private url = 'http://104.248.205.251:8081/actuator/metrics';
+  private url = environment.api + 'actuator/metrics';
 
   constructor(private http: HttpClient) {
   }
