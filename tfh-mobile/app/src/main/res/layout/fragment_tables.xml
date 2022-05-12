@@ -17,6 +17,12 @@
         android:textAlignment="center">
     </com.google.android.material.textview.MaterialTextView>
 
+    <ProgressBar
+        android:id="@+id/tableLoading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:indeterminateTint="@color/black"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tables_view"
         android:layout_width="match_parent"

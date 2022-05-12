@@ -1,10 +1,13 @@
 package com.example.tfhmobile.fragment
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -46,7 +49,6 @@ class OrdersFragment(private val table: TableDTO) : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_orders, container, false)
     }
 
@@ -54,7 +56,7 @@ class OrdersFragment(private val table: TableDTO) : Fragment() {
         menuItemAdapter.submitList(order.getItems())
         orderPrice.text = "= " + order.getItems().map { item -> item.getPrice() }
             .reduce {a, b -> a + b}
-            .toString() + " lei"
+            .toString() + " MDL"
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -76,8 +78,10 @@ class OrdersFragment(private val table: TableDTO) : Fragment() {
         orderViewModel.orders.observe(viewLifecycleOwner) { resource ->
             when (resource) {
                 is Resource.Loading -> {
+                    orderLoading.visibility = ProgressBar.VISIBLE;
                 }
                 is Resource.Success -> {
+                    orderLoading.visibility = ProgressBar.INVISIBLE;
                     orderAdapter.submitList(resource.data)
                     totalOrderPrice.text = "= " + resource.data.map { order -> order.getItems() }
                         .map { items ->
@@ -88,10 +92,57 @@ class OrdersFragment(private val table: TableDTO) : Fragment() {
                     clickOrderFunction(resource.data[0])
                 }
                 is Resource.Failure -> {
+                    orderLoading.visibility = ProgressBar.INVISIBLE;
                     Toast.makeText(activity, resource.error.message, Toast.LENGTH_LONG).show()
                 }
             }
         }
+
+        addOrderButton.setOnClickListener {
+            changeToAddOrderFragment()
+        }
+
+        closeTableButton.setOnClickListener {
+            AlertDialog.Builder(requireContext())
+                .setTitle("Please confirm.")
+                .setMessage("Do you want to close this table?")
+                .setPositiveButton("Yes") { _, _ ->
+                    closeTable()
+                }
+                .setNegativeButton("No", null)
+                .show()
+        }
+    }
+
+    private fun closeTable() {
+        orderViewModel.close(table.getCurrentBookingId()!!)
+        orderViewModel.closed.observe(viewLifecycleOwner) { resource ->
+            when (resource) {
+                is Resource.Loading -> {
+                }
+                is Resource.Success -> {
+                    if (resource.data) {
+                        Toast.makeText(requireContext(), "Table closed.", Toast.LENGTH_LONG).show();
+                        changeToTablesFragment()
+                    }
+                }
+                is Resource.Failure -> {
+                    Toast.makeText(activity, resource.error.message, Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+    }
+
+    private fun changeToAddOrderFragment() {
+        val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fragment_container, AddOrderFragment.newInstance(table))
+        fragmentTransaction.commit()
+    }
+
+    private fun changeToTablesFragment() {
+        val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fragment_container, TablesFragment.newInstance())
+        fragmentTransaction.commit()
     }
 
     companion object {

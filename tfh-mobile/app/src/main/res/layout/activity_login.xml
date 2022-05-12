@@ -135,6 +135,16 @@
 
     </ScrollView>
 
+    <ProgressBar
+        android:id="@+id/loginLoading"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:layout_marginBottom="25sp"
+        app:layout_constraintBottom_toTopOf="@id/loginButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:indeterminateTint="@color/black"/>
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/loginButton"
         android:layout_width="match_parent"

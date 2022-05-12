@@ -1,6 +1,8 @@
 package com.example.tfhmobile.network
 
 import com.example.tfhmobile.dto.*
+import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -22,4 +24,10 @@ interface RetrofitService {
 
     @GET("/api/menu_items/all")
     suspend fun getMenuItemsByCategories(): HttpResponse<List<MenuItemsByCategoryDTO>>
+
+    @POST("/api/orders")
+    fun addOrder(@Body request: OrderRequest): Call<HttpResponse<OrderDTO>>
+
+    @POST("/api/bookings/{id}/close")
+    suspend fun closeBooking(@Path("id") bookingId: Long): Response<Unit>
 }

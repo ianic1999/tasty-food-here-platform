@@ -23,7 +23,7 @@ class LoginViewModel(private val retrofitService: RetrofitService): ViewModel() 
                 val response = retrofitService.login(request)
                 _jwt.value = Resource.Success(response.getData())
             } catch (ex: Exception) {
-                _jwt.value = Resource.Failure(ex)
+                _jwt.value = Resource.Failure(Exception("Authentication error"))
             }
         }
     }

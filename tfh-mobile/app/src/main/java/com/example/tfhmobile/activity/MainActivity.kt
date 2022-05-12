@@ -1,6 +1,7 @@
 package com.example.tfhmobile.activity
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Toast
@@ -31,6 +32,9 @@ class MainActivity : AppCompatActivity() {
         retrofitService = NetworkModule.getClient(this).create(RetrofitService::class.java)
         loadMenuItems()
         setFragment(TablesFragment.newInstance())
+        logo.setOnClickListener {
+            setFragment(TablesFragment.newInstance())
+        }
     }
 
     private fun setFragment(fragment: Fragment) {
@@ -48,9 +52,8 @@ class MainActivity : AppCompatActivity() {
                 val gson = Gson()
                 edit.putString("menuItems", gson.toJson(items))
                 edit.apply()
-                Toast.makeText(baseContext, "Menu items loaded", Toast.LENGTH_LONG).show()
             } catch (ex: IOException) {
-                Toast.makeText(baseContext, ex.message, Toast.LENGTH_LONG).show()
+                Toast.makeText(baseContext, "Token expired", Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -69,16 +72,9 @@ class MainActivity : AppCompatActivity() {
                 when (connection.getType()) {
                     1 -> {
                         noInternetDialogFragment.dismiss()
-                        Toast.makeText(this, "Wifi turned ON", Toast.LENGTH_SHORT)
-                            .show()
                     }
                     2 -> {
                         noInternetDialogFragment.dismiss()
-                        Toast.makeText(
-                            this,
-                            "Mobile data turned ON",
-                            Toast.LENGTH_SHORT
-                        ).show()
                     }
                 }
             } else {

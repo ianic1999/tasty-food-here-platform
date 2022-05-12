@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 object NetworkModule {
-    private const val BASE_URL = "http://192.168.100.7:8081/"
+    private const val BASE_URL = "http://104.248.205.251:8081/"
 
     fun getClient(activity: Activity): Retrofit {
         val token = getToken(activity)

@@ -1,16 +1,19 @@
 package com.example.tfhmobile.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tfhmobile.R
+import com.example.tfhmobile.activity.LoginActivity
 import com.example.tfhmobile.dto.TableDTO
 import com.example.tfhmobile.network.NetworkModule
 import com.example.tfhmobile.network.RetrofitService
@@ -41,7 +44,7 @@ class TablesFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_tables, container, false)
     }
 
-    fun changeToOrdersFragment(table: TableDTO) {
+    private fun changeToOrdersFragment(table: TableDTO) {
         val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fragment_container, OrdersFragment.newInstance(table))
         fragmentTransaction.commit()
@@ -58,15 +61,27 @@ class TablesFragment : Fragment() {
         tableViewModel.getTables()
         tableViewModel.tables.observe(viewLifecycleOwner) {resource ->
             when(resource) {
-                is Resource.Loading -> {}
+                is Resource.Loading -> {
+                    tableLoading.visibility = ProgressBar.VISIBLE
+                }
                 is Resource.Success -> {
+                    tableLoading.visibility = ProgressBar.INVISIBLE
                     tableAdapter.submitList(resource.data)
                 }
                 is Resource.Failure -> {
+                    tableLoading.visibility = ProgressBar.INVISIBLE
                     Toast.makeText(activity, resource.error.message, Toast.LENGTH_LONG).show()
+                    if (resource.error.message!!.contains("401")) {
+                        changeToLoginActivity()
+                    }
                 }
             }
         }
+    }
+
+    private fun changeToLoginActivity() {
+        val intent = Intent(requireContext(), LoginActivity::class.java)
+        startActivity(intent)
     }
 
     companion object {

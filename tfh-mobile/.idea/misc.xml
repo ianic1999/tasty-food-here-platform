@@ -3,6 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/iumanschii/tasty-food-here-platform/tfh-mobile/app/src/main/res/drawable/ic_close.xml" value="0.1965" />
+        <entry key="..\:/Users/iumanschii/tasty-food-here-platform/tfh-mobile/app/src/main/res/drawable/ic_notification.xml" value="0.1965" />
+        <entry key="..\:/Users/iumanschii/tasty-food-here-platform/tfh-mobile/app/src/main/res/drawable/notification.xml" value="0.1965" />
+        <entry key="..\:/Users/iumanschii/tasty-food-here-platform/tfh-mobile/app/src/main/res/drawable/tfh_logo_background.xml" value="0.1345" />
+        <entry key="..\:/Users/iumanschii/tasty-food-here-platform/tfh-mobile/app/src/main/res/layout/activity_login.xml" value="0.1859375" />
+        <entry key="..\:/Users/iumanschii/tasty-food-here-platform/tfh-mobile/app/src/main/res/layout/activity_main.xml" value="0.1859375" />
+        <entry key="..\:/Users/iumanschii/tasty-food-here-platform/tfh-mobile/app/src/main/res/layout/activity_register.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/iumanschii/tasty-food-here-platform/tfh-mobile/app/src/main/res/layout/add_menu_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/iumanschii/tasty-food-here-platform/tfh-mobile/app/src/main/res/layout/fragment_add_ordent.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/iumanschii/tasty-food-here-platform/tfh-mobile/app/src/main/res/layout/fragment_add_order.xml" value="0.20833333333333334" />
+        <entry key="..\:/Users/iumanschii/tasty-food-here-platform/tfh-mobile/app/src/main/res/layout/fragment_orders.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/iumanschii/tasty-food-here-platform/tfh-mobile/app/src/main/res/layout/fragment_tables.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/iumanschii/tasty-food-here-platform/tfh-mobile/app/src/main/res/layout/menu_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/iumanschii/tasty-food-here-platform/tfh-mobile/app/src/main/res/layout/order.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/iumanschii/tasty-food-here-platform/tfh-mobile/app/src/main/res/layout/order_request.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/iumanschii/tasty-food-here-platform/tfh-mobile/app/src/main/res/layout/table.xml" value="0.25416666666666665" />
         <entry key="..\:/jtom/tasty-food-here-platform/tfh-mobile/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.236" />
         <entry key="..\:/jtom/tasty-food-here-platform/tfh-mobile/app/src/main/res/drawable/ic_close.xml" value="0.236" />
         <entry key="..\:/jtom/tasty-food-here-platform/tfh-mobile/app/src/main/res/drawable/ic_launcher_background.xml" value="0.236" />

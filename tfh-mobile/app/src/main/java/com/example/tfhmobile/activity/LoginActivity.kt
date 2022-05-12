@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +16,8 @@ import com.example.tfhmobile.network.RetrofitService
 import com.example.tfhmobile.presentation.LoginViewModel
 import com.example.tfhmobile.presentation.RegisterViewModelFactory
 import com.example.tfhmobile.presentation.Resource
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.activity_login.*
 
 
@@ -36,21 +39,37 @@ class LoginActivity : AppCompatActivity() {
         }
 
         loginButton.setOnClickListener {
-            val request = LoginRequest(
-                phone.text.toString(),
-                password.text.toString()
-            )
-            loginViewModel.login(request)
-            loginViewModel.jwt.observe(this) { resource ->
-                when (resource) {
-                    is Resource.Loading -> {
-                    }
-                    is Resource.Success -> {
-                        handleLogin(resource.data)
-                    }
-                    is Resource.Failure -> {
-                        Toast.makeText(this, resource.error.message, Toast.LENGTH_LONG).show()
-                    }
+            FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+                if (!task.isSuccessful) {
+                    Toast.makeText(this, "Device token not found", Toast.LENGTH_LONG).show()
+                }
+                val token = task.result
+                login(token)
+            }
+        }
+
+        loginLoading.visibility = ProgressBar.INVISIBLE;
+    }
+
+    private fun login(deviceId: String) {
+        val request = LoginRequest(
+            phone.text.toString(),
+            password.text.toString(),
+            deviceId
+        )
+        loginViewModel.login(request)
+        loginViewModel.jwt.observe(this) { resource ->
+            when (resource) {
+                is Resource.Loading -> {
+                    loginLoading.visibility = ProgressBar.VISIBLE;
+                }
+                is Resource.Success -> {
+                    loginLoading.visibility = ProgressBar.INVISIBLE;
+                    handleLogin(resource.data)
+                }
+                is Resource.Failure -> {
+                    loginLoading.visibility = ProgressBar.INVISIBLE;
+                    Toast.makeText(this, resource.error.message, Toast.LENGTH_LONG).show()
                 }
             }
         }

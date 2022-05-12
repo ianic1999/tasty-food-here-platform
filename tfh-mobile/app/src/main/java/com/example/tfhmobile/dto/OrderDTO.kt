@@ -13,4 +13,6 @@ class OrderDTO constructor(
     fun getItems(): List<MenuItemWithCountDTO> {
         return items
     }
+
+    fun getBookingId(): Long = bookingId;
 }

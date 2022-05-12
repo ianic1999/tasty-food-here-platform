@@ -53,7 +53,7 @@ class RegisterActivity : AppCompatActivity(), LifecycleOwner {
                             startActivity(intent)
                         }
                         is Resource.Failure -> {
-                            Toast.makeText(this, "Error", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this, resource.error.message, Toast.LENGTH_LONG).show()
                             resource.error.printStackTrace()
                         }
                     }

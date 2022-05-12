@@ -30,4 +30,7 @@
     <string name="table_1_label">Table #1</string>
     <string name="orders_lable">Orders</string>
     <string name="add_order_label">Add order</string>
+    <string name="add_order">Add order</string>
+    <string name="filter_items">Filter items</string>
+    <string name="confirm_label">Confirm</string>
 </resources>

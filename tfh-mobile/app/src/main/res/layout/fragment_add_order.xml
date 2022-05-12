@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.AddOrderFragment">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/addOrder"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:text="@string/add_order"
+        android:textSize="50sp"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@color/black"
+        android:textAlignment="center">
+    </com.google.android.material.textview.MaterialTextView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:orientation="horizontal">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/filterItems"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40sp"
+            android:layout_marginTop="10sp"
+            android:layout_marginRight="40sp"
+            android:fontFamily="sans-serif-medium"
+            android:hint="@string/filter_items"
+            android:textSize="18sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/addMenuItemsView"
+            android:layout_width="match_parent"
+            android:layout_height="250sp"
+            android:layout_marginTop="55dp"
+            android:clipToPadding="false"
+            android:padding="5dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="385sp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/addOrderView"
+            android:layout_width="match_parent"
+            android:layout_height="200sp"
+            android:clipToPadding="false"
+            android:padding="5dp" />
+    </RelativeLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/confirmOrderRequestButton"
+        android:layout_width="match_parent"
+        android:layout_height="80sp"
+        android:layout_marginBottom="40sp"
+        android:layout_marginLeft="28sp"
+        android:layout_marginRight="28sp"
+        android:backgroundTint="@color/black"
+        android:textColor="@color/white"
+        android:text="@string/confirm_label"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="40sp"
+        android:layout_marginTop="600sp">
+
+    </com.google.android.material.button.MaterialButton>
+
+</FrameLayout>

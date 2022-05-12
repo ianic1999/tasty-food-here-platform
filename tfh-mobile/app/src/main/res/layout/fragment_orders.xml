@@ -41,6 +41,12 @@
             app:layout_constraintRight_toRightOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <ProgressBar
+        android:id="@+id/orderLoading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:indeterminateTint="@color/black"/>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint2"
         android:layout_width="match_parent"
@@ -63,7 +69,6 @@
             android:id="@+id/totalOrderPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="= 230 lei"
             android:textColor="@color/black"
             android:textSize="20sp"
             app:fontFamily="sans-serif-medium"
@@ -98,7 +103,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/menuItemsView"
-        android:text="= 90 lei"
         android:textColor="@color/black"
         android:fontFamily="sans-serif-medium"
         app:layout_constraintRight_toRightOf="parent"
