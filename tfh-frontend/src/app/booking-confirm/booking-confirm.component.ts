@@ -31,7 +31,7 @@ export class BookingConfirmComponent implements OnInit {
     let request = new BookingConfirmationModel(this.bookingId!, this.code);
     this.bookingService.confirm(this.bookingId!, request).toPromise()
       .then(_ => this.handleSuccessConfirmation())
-      .catch(err => console.log(err))
+      .catch(err => this.snackBar.open(err, "OK", {duration: 4000}))
   }
 
   handleSuccessConfirmation() {
